@@ -1,0 +1,113 @@
+#include "config.tmpl"
+
+DEFINES = $(DEF_SHAPE) -DXMASDIR=\"$(XMASDIR)\" $(DEFINES_SOUND)\
+	$(DEFINES_I18N) $(DEFINES_BIFF) $(DIFFTIME) $(DEFINES_DBL)\
+	$(DEF_CHAIN) $(DEF_SHADOW) $(DEFINES_YOUBIN)\
+	$(DEF_XAW3D) $(DEFINES_DMSET)
+
+SYS_LIBRARIES = -lm
+
+IMAGELIBDIR = imagelib
+IMAGELIB = $(IMAGELIBDIR)/libimage.a
+STD_INCLUDES = -I$(IMAGELIBDIR)
+
+#define IHaveSubdirs
+SUBDIRS = $(IMAGELIBDIR)
+#define PassCDebugFlags
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+
+DEPLIBS = XawClientDepLibs $(IMAGELIB)
+LOCAL_LIBRARIES = XawClientLibs $(IMAGELIB)
+
+OBJS =  signal.o main.o timer.o action.o menu.o\
+	sim.o resource.o pattern.o \
+	alarm.o file.o preference.o $(ISINFILE) $(SOUNDFILE) $(BIFFFILE) \
+	CascadeMenu.o SmeCascade.o PixCore.o
+
+SRCS = $(OBJS:.o=.c)
+
+ComplexProgramTarget(xmascot)
+
+MakeDirectories(install,$(XMASDIR))
+InstallNonExec(mascots/pin.gif,$(XMASDIR))
+InstallNonExec(mascots/chain.gif,$(XMASDIR))
+InstallNonExec(mascots/mail_r.gif,$(XMASDIR))
+InstallNonExec(mascots/kuma.gif,$(XMASDIR))
+InstallNonExec(mascots/inu.gif,$(XMASDIR))
+InstallNonExec(mascots/neko.gif,$(XMASDIR))
+InstallNonExec(mascots/neko2.gif,$(XMASDIR))
+InstallNonExec(mascots/teru.gif,$(XMASDIR))
+InstallNonExec(mascots/pen.gif,$(XMASDIR))
+InstallNonExec(mascots/saru.gif,$(XMASDIR))
+InstallNonExec(mascots/rabi.gif,$(XMASDIR))
+InstallNonExec(mascots/fish.gif,$(XMASDIR))
+InstallNonExec(mascots/monohosi.gif,$(XMASDIR))
+InstallNonExec(mascots/logo.gif,$(XMASDIR))
+InstallNonExec(sounds/pipipipi.au,$(XMASDIR))
+InstallNonExec(sounds/mi.au,$(XMASDIR))
+InstallNonExec(sounds/mi.raw,$(XMASDIR))
+InstallNonExec(sounds/mi2.au,$(XMASDIR))
+InstallNonExec(sounds/mi2.raw,$(XMASDIR))
+InstallNonExec(sounds/mitime.au,$(XMASDIR))
+InstallNonExec(sounds/mitime.raw,$(XMASDIR))
+InstallNonExec(xbmfile/icon.xbm,$(XMASDIR))
+InstallNonExec(xbmfile/osu.xbm,$(XMASDIR))
+InstallNonExec(xbmfile/osu.xbmmsk,$(XMASDIR))
+InstallNonExec(xbmfile/yubi.xbm,$(XMASDIR))
+InstallNonExec(xbmfile/yubi.xbmmsk,$(XMASDIR))
+InstallNonExec(xbmfile/tumamu.xbm,$(XMASDIR))
+InstallNonExec(xbmfile/tumamu.xbmmsk,$(XMASDIR))
+InstallNonExec(xbmfile/select.xbm,$(XMASDIR))
+
+all:: XMascot.ad 
+XMascot.ad:: XMascot.ad.sed
+	sed 's!SOUND_COMMAND_NAME!$(SOUND_COMMAND)!;s!XMASDIR!$(XMASDIR)!' XMascot.ad.sed > $@
+	sed 's!menu1!menu1!' mascots/zodiac/zodiac.Xdefaults >> $@
+XCOMM	sed 's!menu1!menu2!' mascots/dokyu2/dokyu2.Xdefaults >> $@
+XCOMM	sed 's!menu1!menu3!' mascots/nadesico/nadesico.Xdefaults >> $@
+XCOMM	sed 's!menu1!menu4!' mascots/kakyu/kakyu.Xdefaults >> $@
+XCOMM	sed 's!menu1!menu5!' mascots/eva/eva.Xdefaults >> $@
+XCOMM	sed 's!menu1!menu6!' mascots/etc/etc.Xdefaults >> $@
+	echo "*menusNum: 2" >> $@
+
+clean::
+	$(RM) XMascot.ad
+
+#ifdef PERSONAL
+InstallNonExec(XMascot.ad,$(HOME)/XMascot)
+#else
+InstallAppDefaults(XMascot)
+#endif
+
+#ifdef USE_I18N
+MakeDirectories(install,$(LOCALEDIR))
+
+all:: japanese/XMascot.ad
+japanese/XMascot.ad:: japanese/XMascot.ad.sed
+	sed 's!SOUND_COMMAND_NAME!$(SOUND_COMMAND)!;s!XMASDIR!$(XMASDIR)!' japanese/XMascot.ad.sed > $@
+	sed 's!menu1!menu1!' mascots/zodiac/zodiac.Xdefaults.jp >> $@
+XCOMM	sed 's!menu1!menu2!' mascots/dokyu2/dokyu2.Xdefaults.jp >> $@
+XCOMM	sed 's!menu1!menu3!' mascots/nadesico/nadesico.Xdefaults.jp >> $@
+XCOMM	sed 's!menu1!menu4!' mascots/kakyu/kakyu.Xdefaults.jp >> $@
+XCOMM	sed 's!menu1!menu5!' mascots/eva/eva.Xdefaults.jp >> $@
+XCOMM	sed 's!menu1!menu6!' mascots/etc/etc.Xdefaults.jp >> $@
+	echo "*menusNum: 2" >> $@
+
+
+clean::
+	$(RM) japanese/XMascot.ad
+
+InstallNonExec(japanese/XMascot.ad,$(LOCALEDIR)/XMascot)
+
+#endif
+
+ZODIAC = mascots/zodiac/aries.gif mascots/zodiac/taurus.gif\
+	mascots/zodiac/gemini.gif mascots/zodiac/canser.gif\
+	mascots/zodiac/leo.gif mascots/zodiac/virgo.gif\
+	mascots/zodiac/libra.gif mascots/zodiac/scorpio.gif\
+	mascots/zodiac/sagitt.gif mascots/zodiac/capric.gif\
+	mascots/zodiac/aquarius.gif mascots/zodiac/pisces.gif
+
+InstallMultipleFlags($(ZODIAC),$(XMASDIR),$(INSTDATFLAGS))

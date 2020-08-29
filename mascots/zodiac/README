@@ -1,0 +1,39 @@
+-------------------------------------
+ XMascot 追加マスコット
+
+       黄道12宮星座 
+
+ Copyright 1996 TUT Computer Club
+-------------------------------------
+
+1.使用方法
+
+ (1) 配布に含まれる mag ファイルを、XMascot のサーチパス
+     が通ったディレクトリに入れます。XMascot のシステムディレクトリ
+     ( $(LIBDIR)/X11/xmascot , 通常 /usr/X11R6/lib/X11/xmascot )
+     か、カレントディレクトリ、また XMascot のオプション -search 
+     や リソース XMascot*search で指定できます。
+
+ (2) 付属の zodiac.Xdefaults を、自分のリソースファイル
+     ( ~/.Xdefaults など ) に追加します。
+     この中でサーチパスを zodiac*search: magをいれたところ
+     と指定してもいいでしょう。
+     XMascot のデフォルトファイルに追加してもかまいません。
+     
+     xrdb を使っている場合は、% xrdb -merge .zodiac.Xdefaults と
+     して読み込ませてもいいでしょう。
+
+ (3) % xmascot -name zodiac 
+     として起動すれば、メニューが12宮星座で起動します。
+
+2.著作権
+
+ 配布などの条件は XMascot に準じます。
+ このパッケージに含まれるマスコットのデータの著作権は、
+ 牧野 悌士 (makino@cclub.tutcc.tut.ac.jp)が保有します。
+
+
+
+
+
+ 

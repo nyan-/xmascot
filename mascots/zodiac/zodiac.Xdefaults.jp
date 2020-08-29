@@ -1,0 +1,40 @@
+! XMascot Zodiac Data
+
+*menu1.title: ²«Æ»12À±ºÂ
+*menu1.numsOfMenu: 12
+
+*menu1.masDat0.title: ²´ÍÓºÂ
+*menu1.masDat0.filename: aries.gif
+
+*menu1.masDat1.title: ²´µíºÂ
+*menu1.masDat1.filename: taurus.gif
+
+*menu1.masDat2.title: ÁÐ»ÒºÂ
+*menu1.masDat2.filename: gemini.gif
+
+*menu1.masDat3.title: ³ªºÂ
+*menu1.masDat3.filename: canser.gif
+
+*menu1.masDat4.title: »â»ÒºÂ
+*menu1.masDat4.filename: leo.gif
+
+*menu1.masDat5.title: ²µ½÷ºÂ
+*menu1.masDat5.filename: virgo.gif
+
+*menu1.masDat6.title: Å·ÇéºÂ
+*menu1.masDat6.filename: libra.gif
+
+*menu1.masDat7.title: ê¸ºÂ
+*menu1.masDat7.filename: scorpio.gif
+
+*menu1.masDat8.title: ¼Í¼êºÂ
+*menu1.masDat8.filename: sagitt.gif
+
+*menu1.masDat9.title: »³ÍÓºÂ
+*menu1.masDat9.filename: capric.gif
+
+*menu1.masDat10.title: ¿åÉÓºÂ
+*menu1.masDat10.filename: aquarius.gif
+
+*menu1.masDat11.title: µûºÂ
+*menu1.masDat11.filename: pisces.gif

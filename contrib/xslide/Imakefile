@@ -1,0 +1,27 @@
+XCOMM CC = gcc
+CDEBUGFLAGS = -g -Wall
+XCOMM CCOPTIONS= 
+
+XCOMM set graphics search path
+SEARCH_PATH = $(LIBDIR)/xmascot
+
+DEFINES = -DSEARCH_PATH=\"$(SEARCH_PATH)\"
+
+AllTarget(xslide)
+
+IMAGELIBDIR = ../../imagelib
+IMAGELIB = $(IMAGELIBDIR)/libimage.a
+STD_INCLUDES = -I$(IMAGELIBDIR)
+$(IMAGELIB):
+	cd $(IMAGELIBDIR) ; $(MAKE) DEFINES=""
+
+#define IHaveSubdirs
+SUBDIRS = $(IMAGELIBDIR)
+
+DEPLIBS = XawClientDepLibs $(IMAGELIB)
+LOCAL_LIBRARIES = XawClientLibs $(IMAGELIB)
+
+OBJS = main.o
+SRCS = $(OBJS:.o=.c)
+
+ComplexProgramTarget(xslide)

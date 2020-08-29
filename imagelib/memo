@@ -1,0 +1,26 @@
+animation define script
+
+animation-name {
+label:
+  [image-name] time [from x,y] [size w,h] [to x,y] [mask n]
+label:
+  color-name time [loop [label]]
+  image-name 
+}
+
+ファイルが存在する場合   -> イメージ
+          存在しない場合 -> 色
+
+from, size, to, mask が指定されている場合 -> 差分
+
+label -> 他の Pattern から   -> label 部分でパターンを構築
+         同じ 差分リストから -> 差分リスト用ラベル
+
+
+
+
+
+
+
+
+

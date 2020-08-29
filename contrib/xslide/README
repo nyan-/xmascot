@@ -1,0 +1,69 @@
+----------------
+  xslide  Ver1.1
+----------------
+
+1.はじめに
+
+ xslide はただ単に何らかの画像をスライド表示させるだけの
+ プログラムです。XMascot のときめき指数向上のためのものです(謎)
+ これもシステム(Xserver)への負荷が高いです。ご注意を。
+
+2.著作権など
+
+  このプログラムは、フリーソフトウェアです。(作 渡辺剛 原案 飯田剛)
+  著作権の行使はすべて放棄します。
+  使用によって生じたいかなる損害の責も、作者は負いません。
+
+3.動作環境
+ 
+ Xが動くUNIX なら動くと思います。
+
+ 動作確認
+
+ GATEWAY2000         Pentium 120  NetBSD 1.1/i386
+ SUN SPARC 互換機    ？           SunOS 4.1.3
+
+4.コンパイル
+  
+  Imakefile の中の SEARCH_PATH (グラフィックスの検索パス)を
+  適当に設定します。
+
+  % xmkmf
+  % make Makefiles
+  % make
+ 
+  で完成します。
+  なお、このプログラムは、XMascot Ver2.5 の imagelib を使用しています。
+
+5.使用法
+ 
+ 起動するには
+
+  $ xslide [オプション] [画像ファイル]
+
+ とします。
+ 画像ファイルがない場合は、格子模様を表示します。
+ オプションはつぎのとおりです。
+
+ -display    DISPLAY の指定	
+ -geometry   ジオメトリの指定 (window時のみ有効)
+ -v          verbose モード(for debug)
+ -size WWxHH 格子のサイズ指定
+ -fg   col   格子の色その１
+ -bg   col   格子の色その２
+ -root       root ウィンドウで動作させる
+ -dir  dxdy  スクロールの向きと量を指定する( [+-]x[+-]yの形。デフォルト-1+1)
+ -wait usec  待ち時間指定 micro sec 単位。ちいさすぎると意味なし。
+             デフォルト 10000
+
+ 使用例:
+
+ % xslide -size 100x100 -root -fg green -bg blue &
+ % xslide -root tokimeki_title.mag
+
+History
+
+  96/07/22 XMascot imagelib 対応化
+  96/06/20 Alarm でとまるのを直す (select を使用)
+
+

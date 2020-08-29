@@ -1,0 +1,20 @@
+CDEBUGFLAGS = -g -Wall
+
+AllTarget(xdoor)
+
+IMAGELIBDIR = ../../imagelib
+IMAGELIB = $(IMAGELIBDIR)/libimage.a
+STD_INCLUDES = -I$(IMAGELIBDIR)
+$(IMAGELIB):
+	cd $(IMAGELIBDIR) ; $(MAKE) DEFINES=""
+
+#define IHaveSubdirs
+SUBDIRS = $(IMAGELIBDIR)
+
+DEPLIBS = XawClientDepLibs $(IMAGELIB)
+LOCAL_LIBRARIES = XawClientLibs $(IMAGELIB)
+
+OBJS = xdoor.o
+SRCS = $(OBJS:.o=.c)
+
+ComplexProgramTarget(xdoor)

@@ -1,0 +1,4 @@
+#define bit2_width 4
+#define bit2_height 4
+static unsigned char bit2_bits[] = {
+   0x05, 0x00, 0x05, 0x00};

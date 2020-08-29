@@ -1,0 +1,660 @@
+
+
+
+XMASCOT(1)                                             XMASCOT(1)
+
+
+NNAAMMEE
+       XMascot - X Window System 上で動くかわいいマスコット
+
+SSYYNNOOPPSSIISS
+       xxmmaassccoott [filename] [-_t_o_o_l_k_i_t_o_p_t_i_o_n ...] [-_o_p_t_i_o_n ...]
+
+DDEESSCCRRIIPPTTIIOONN
+       _X_M_a_s_c_o_t  は、 XX WWiinnddooww SSyysstteemm の画面上に可愛いマスコットを
+       表示するプログラムです。以下のような機能を持ちます。
+
+
+       揺れる    画面のなかでプリチーに揺れます。
+
+       伸びる    鎖の長さをお好みに応じて伸び縮み可能です。
+
+       喋る      別途音声再生のコマンド、音声データを準備すること
+                 で、喋らせることが可能です。
+
+       アラーム  毎日ある時刻に定義したアクションをおこさせること
+                 ができます。
+
+       BIFF      メールの到着をしらせる BIFF として利用できます。
+                 From: Subject: も表示されるようになりました。
+
+
+OOPPEERRAATTIIOONN
+       基本的な操作は次の通りです。
+
+       ピン                左ボタンでドラッグ移動
+
+                           右ボタンでクリックメニューの表示
+
+       マスコット          左ボタンでクリック加速
+
+                           左ボタンでドラッグ鎖を伸び縮みさせる
+
+                           右ボタンでクリッククリック時音声再生
+
+       メール着信マーク    左ボタンでクリックメール一覧表示
+
+
+AALLAARRMM SSEETTUUPP
+       _X_M_a_s_c_o_t は、さまざまなアラーム機能を持っています。これらの
+       アラームの設定は、Set Alarm/Chime メニューから行ないます。
+
+       設定画面
+
+        ---a--- --b-- ----------c----------- --d---
+        (*^o^*) 00:00 sound(pipipipi.au)     [TEST]
+
+
+       a.  こ のスイッチを ON (黒く反転) にすると、設定が有効にな
+           ります。
+
+
+
+
+X Version 11               10 Aug 1997                          1
+
+
+
+
+
+XMASCOT(1)                                             XMASCOT(1)
+
+
+       b.  時刻の設定 (24 時間表示) です。タイマーの場合 は ア ク
+           ションをおこすまでの時間を分: 秒で設定します。カップラ
+           ーメンをつくるなら 03:00 です。
+
+       c.  実行させるアクションを設定します。アクションにつ い て
+           は、ACTIONS の項目を参照してください
+
+       d.  アラームのテストを行ないます
+
+           ア ラームで設定したデータは、$HOME/.xmascotrc に保存さ
+           れます。
+
+
+       各アラームの解説
+
+
+       DDaaiillyy AAllaarrmm         毎日定時に実行されるアラームです。3 つ
+                           設定できます
+
+       TTiimmeerr AAllaarrmm         一定時間経過後に一度だけ実行されるアラ
+                           ームです。これだけ時間指定が分:  秒 で
+                           す。
+
+       IInntteerrvvaall TTiimmeerr      一定時間間隔で実行されるアラームです
+
+       HHoouurr CChhiimmee          毎時 0 分に実行されるチャイムです
+
+       HHaallff--HHoouurr CChhiimmee     毎時 30 分に実行されるチャイムです。
+
+       BBiiffff AAccttiioonn         こ れはアラームではありません。Biff 用
+                           のアクションを定義します。
+
+
+BBIIFFFF FFEEAATTUURREE
+       _X_M_a_s_c_o_t は、biff としての機能を持っています。着信マーク の
+       表 示、From: Subject: の一覧表示、アクション駆動を行ないま
+       す。youbin コマンドの呼び出しもサポートしています。(コンパ
+       イル時指定)
+
+       通常は、各ユーザのメールのスプールを参照して動作しますが、
+       オプション --bbiiffffccmmdd でメールの到着をチェックする外部コマン
+       ドを指定することも可能です。この場合、外部コマンドの返り値
+       で次のように判断します。
+
+
+       1 or 負数 メールボックスは空
+
+       0         新規メールあり
+
+       2         状態は変わらず
+
+
+       また、外部コマンド呼びだしの場合は、メールの一覧表示はその
+       外部コマンドの標準出力が使用されます。
+
+
+
+X Version 11               10 Aug 1997                          2
+
+
+
+
+
+XMASCOT(1)                                             XMASCOT(1)
+
+
+       オプション --bbiiffffffiilltteerr で、BIFF 用外部フィルタを指定した場
+       合、一覧表示される内容はこのフィルタで処理されます。国際化
+       対 応にしてある場合、このフィルタを適宜設定することで、JIS
+       や MIME のヘッダをきちんと表示させることが可能です。フィル
+       タには、nkf などが利用できます。
+
+       例 1: JIS の Subject: を表示させる
+
+       locale が EUC の場合
+        % xmascot -bifffilter "nkf -e"
+
+       locale が SJIS の場合
+        % xmascot -bifffilter "nkf -s"
+
+       例 2: From: の MIME もデコードさせたい場合
+
+       locale が EUC の場合
+        % xmascot -bifffilter "nkf -e -m"
+
+       locale が SJIS の場合
+        % xmascot -bifffilter "nkf -s -m"
+
+
+OOPPTTIIOONNSS
+       _X_M_a_s_c_o_t  は XX TToooollkkiitt の標準的なオプションに加えて以下に示
+       すようなオプションが使用できます。
+
+       なお、透明色は自動で判定されますので、通常は未指定で問題あ
+       りません。どうしても判定に成功しないときのみ指定してくださ
+       い。
+
+       --vveerrbboossee            実行中の作業内容を標準エラー出力に出力
+                           させます。
+
+       --ggrraavviittyy _n          重 力 加 速 度を指定します。単位は、kg
+                           cm/s^2 です。
+
+       --cchhaaiinnlleennggtthh _n      鎖の長さを指定します。単位は mm です。
+
+       --ddaammppiinngg _f          減 衰係数を指定します。0 から 1 までの
+                           実数で指定します。0 だと、減衰せ ず に
+                           ずっと揺れ続けます。1 だと、1 度も揺れ
+                           ずに止まります。
+
+       --ddeeggrreeee _n           振り始めの角度を指定します。0  〜  180
+                           度の範囲で指定します。
+
+       --mmeennuunnoo _n           複数のマスコットメニューがある場合、開
+                           始時のメニューの番号を指定します。一番
+                           上にあるのが 0 番で、以下 1,2,3 と番号
+                           が振られています。
+
+       --nnoo _n               開始時に表示するマスコットの番号を指定
+                           し ま す。メニューの一番上にあるのが 0
+
+
+
+X Version 11               10 Aug 1997                          3
+
+
+
+
+
+XMASCOT(1)                                             XMASCOT(1)
+
+
+                           番で、以下 1,2,3 と番号が振られてい ま
+                           す。
+
+       --mmaaggnniiffyy _f          マスコットの拡大率を実数で指定します。
+
+       --ppiinnppaatt _f_i_l_e_n_a_m_e    ピンの表示パターンのファイルを指定しま
+                           す。
+
+       --rraannddoomm             起動時のマスコットをランダムに決定しま
+                           す
+
+       --cchhaannggeettiimmee _m_i_n     マスコットを定期的にメニューの次のもの
+                           に変更させます。アラームのインターバル
+                           とは別系統になります。時間は分で指定し
+                           ます。-random と併用すると、変更がラン
+                           ダムになります。
+
+       --aallllmmeennuu            マスコット変更の機能が全メニューに及び
+                           ます
+
+       --cchhaaiinnnnuumm _n         鎖の個数を指定します。
+
+       --ddrraawwttiimmiinngg _n       描画をコマ落ちさせます。n 回に一回の描
+                           画になります。
+
+       --sseeaarrcchhppaatthh _s_e_a_r_c_h_-_p_a_t_h
+                           マスコットや音声のデータの検索パスを指
+                           定します。パスは: で区切ります。
+
+       --cchhaaiinnppaatt _f_i_l_e_n_a_m_e  鎖の表示パターンを指定します。
+
+       --ssoouunnddccmmdd _c_m_d_l_i_n_e   音声再生用のコマンドを指定します。コマ
+                           ンドラインのファイル名が入る位置に、%s
+                           を入れて下さい。
+
+                           例"cat %s > /dev/audio"
+
+       --ssoouunnddssttaarrtt _f_i_l_e    起動時の音声を指定します。
+
+       --ssoouunnddcclliicckk _f_i_l_e    クリック時の音声を指定します。
+
+       --ssoouunnddeenndd _f_i_l_e      終了時の音声を指定します。
+
+       --ssoouunnddmmaaiill _f_i_l_e     メール着信時の音声を指定します。
+
+       --nnoobbiiffff             BIFF  機能を無効にします。 --uuppddaattee _s_e_c
+                           到着調査の時間間隔を秒単位で指定 し ま
+                           す。(デフォルト 30 秒)
+
+       --nnoooonnccee             メールが到着するたびにアクションを起こ
+                           させます。(デフォルトでは、メールを 参
+                           照 して、biff の起動が解除されてからで
+                           ないと、2 通目以降はアクションは呼ばれ
+                           ません。)
+
+
+
+X Version 11               10 Aug 1997                          4
+
+
+
+
+
+XMASCOT(1)                                             XMASCOT(1)
+
+
+       --bbiiffffccmmdd _c_m_d        メール到着をチェックするコマンドを指定
+                           します。これを指定すると、メールスプー
+                           ルは参照しなくなります。
+
+       --bbiiffffppaatt _f_n_a_m_e      メール到着を示すグラフィックのパターン
+                           を指定します。
+
+       --bbiiffffppooss _s_t_r        メール到着パターンを表示する位置を指定
+                           します。(left,center,right)
+
+       --nnoobbiifffflliissttss        着信メール一覧表示を出しません。
+
+       --bbiiffffggeeoommeettrryy _g_e_o_m  着信メール一覧の表示サイズと表示位置を
+                           指定します。
+
+       --bbiiffffffiilltteerr _c_m_d     着信メール一覧表示の際に通すフィルタコ
+                           マンドを指定します。
+
+       --ppooppddoowwnnttiimmee _s_e_c    着信メール一覧表示を自動的に消すまでの
+                           秒数を指定します。0 以下の数値に す る
+                           と、自動に消えなくなります。
+
+       --nnooyyoouubbiinn           YOUBIN プロトコルを使用しません。
+
+       --sseerrvveerr _h_o_s_t        YOUBIN サーバを指定します。
+
+       --sshhaaddooww _n           影を表示する際の、影のずれの量を指定し
+                           ます。
+
+       --nnoosshhaaddooww           影をつけません ( --sshhaaddooww _0 とおなじ)
+
+
+AACCTTIIOONNSS
+       _X_M_a_s_c_o_t では、アラームや Biff の機能の動作として、さまざま
+       な ア クションを指定することが可能です。これは、 XX TToooollkkiitt
+       のアクションの機構を利用しているので、キーボードやマウスに
+       対して同様にアクションを割り当てることができます。リソース
+       の機構を用いて適宜 translation して下さい。
+
+
+       ピン部分       XMascot.translations: #override
+
+       マスコット部分 XMascot.mascot_base.translations: #override
+
+
+       例:
+        XMascot.translations: #override \
+          <Btn2Up>: chg_next() snd_click()\n\
+          Shift<Key>R: chg_random() snd_click()
+
+       この例では、ピンの部分でマウスの中ボタンを押すと、マスコッ
+       トがメニューの次のものに変わり、クリック時音声が再生されま
+       す。 ま た、Shift-R で、マスコットがランダムに変わって、ク
+       リック時音声が再生されます。
+
+
+
+X Version 11               10 Aug 1997                          5
+
+
+
+
+
+XMASCOT(1)                                             XMASCOT(1)
+
+
+       アクションの定義の詳細は、X に関する書籍などを参照して下さ
+       い。
+
+
+       アラームなどでの利用は、アラームのダイアログの中にアクショ
+       ンを記述します。この設定内容は、$HOME/.xmascotrc に保存 さ
+       れます。
+
+       アクション一覧表
+
+
+       qquuiitt    プログラムを終了します。
+
+       cchhaannggee((_n_u_m))
+               メ ニュ ー エントリの _n_u_m 番のマスコットに変更しま
+               す。
+
+       cchhgg__ffiillee((_f_n_a_m_e_[_,_t_i_t_l_e_]))
+               _f_n_a_m_e のファイルをマスコットとして読み込みます。こ
+               れはメニューの一番下に登録されます。
+
+       cchhgg__nneexxtt
+               マスコットをメニューの次のエントリのものに変更しま
+               す。
+
+       cchhgg__nneexxtt__aallll
+               全メニューをふくめて次のエントリのものに変更 し ま
+               す。
+
+       cchhgg__rraannddoomm
+               マスコットをランダムに変更します。
+
+       cchhgg__rraannddoomm__aallll
+               全 メ ニューを含めてマスコットをランダムに変更しま
+               す。
+
+       ssttaarrtt__mmoovvee
+               マスコットをすこし加速させます。止まっていたら揺れ
+               始めます。
+
+       ssoouunndd((_f_n_a_m_e_1_,_._._.))
+               音声ファイルを連続再生します。
+
+       ssnndd__ssttaarrtt
+               開始時音声を再生します。
+
+       ssnndd__cclliicckk
+               クリック時音声を再生します。
+
+       ssnndd__eenndd 終了時音声を再生します。
+
+       ssnndd__mmaaiill
+               メール着信時音声を再生します。
+
+
+
+
+X Version 11               10 Aug 1997                          6
+
+
+
+
+
+XMASCOT(1)                                             XMASCOT(1)
+
+
+       ssyysstteemm((_c_m_d_l_i_n_e))
+               外部コマンドを実行します。
+
+       cchhgg__ppaarraamm((_p_a_r_a_m_1_,_d_a_t_1_,_._.))
+               パラメータを変更させます。変更できるパラメータはつ
+               ぎのとおりです。
+
+               grav 重力定数
+
+               dump 減衰係数
+
+               mag  拡大率
+
+               clen 鎖の長さ
+
+       bbeellll((_p_a_r_a_m))
+               ベルを鳴らします。このベルは XBell を用いてお り、
+               USE_SOUND  と は無関係です。_p_a_r_a_m は -100 から 100
+               の間で指定します。
+
+       sshhoowwbbiiffff
+               メール一覧を表示させます。
+
+
+RREESSOOUURRCCEESS
+       _X_M_a_s_c_o_t では XX TToooollkkiitt の標準的なリソースに加えて、次の よ
+       うなリソースが利用できます。
+
+
+       vveerrbboossee ((class VVeerrbboossee))
+               チェック用の冗長表示モードにします。
+
+       ggrraavviittyy ((class GGrraavviittyy))
+               重力加速度を指定します。
+
+       cchhaaiinnLLeenn ((class CChhaaiinnLLeenn))
+               鎖の長さを指定します。
+
+       ddaammppCCooeeffff ((class DDaammppCCooeeffff))
+               減衰係数を指定します。
+
+       ddeeggrreeee ((class DDeeggrreeee))
+               振り始めの角度を指定します。
+
+       mmaaggnniiffyyBBaassee ((class MMaaggnniiffyyBBaassee))
+               マスコット全体に対する拡大率を指定します。
+
+       aaccttiioonn ((class AAccttiioonn))
+               デフォルトのアクションを指定します。
+
+       sseeaarrcchh ((class SSeeaarrcchh))
+               デフォルトのサーチパスを指定します。
+
+
+
+
+
+X Version 11               10 Aug 1997                          7
+
+
+
+
+
+XMASCOT(1)                                             XMASCOT(1)
+
+
+       ppiinnPPaatttteerrnn ((class PPaatttteerrnn))
+               ピンの画像ファイルを指定します。
+
+       ppccooll00 ((class CCooll00))
+               ピンの透明色 (色番号) を指定します。
+
+       pprrggbb00 ((class RRggbb00))
+               ピンの透明色 (RGB 指定) を指定します。
+
+       cchhaaiinnNNuumm ((class CChhaaiinnNNuumm))
+               鎖の個数を指定します。
+
+       cchhaaiinnPPaatttteerrnn ((class PPaatttteerrnn))
+               鎖の画像ファイルを指定します。
+
+       ccccooll00 ((class CCooll00))
+               鎖の透明色 (色番号) を指定します。
+
+       ccrrggbb00 ((class RRggbb00))
+               鎖の透明色 (RGB 指定) を指定します。
+
+       rraannddoomm ((class RRaannddoomm))
+               マスコットをランダムに決定します。
+
+       cchhaannggeeTTiimmee ((class IInntteerrvvaall))
+               マスコットを自動変更するまでの時間を指定します。
+
+       aallllMMeennuu ((class AAllllMMeennuu))
+               マスコットの自動変更が全メニューに及ぶようになりま
+               す。
+
+       mmaassccoottNNoo ((class MMaassccoottNNoo))
+               起動時のマスコットの番号を指定します。
+
+       mmeennuuNNoo ((class MMeennuuNNoo))
+               起動時のメニューの番号を指定します。
+
+       sshhaaddooww ((class SShhaaddooww))
+               影のずれの量を指定します。0 以下の場合は影をなくし
+               ます。
+
+
+       Biff 関連のリソース
+
+
+       bbiiffff ((class BBiiffff))
+               biff 機能が有効かどうか指定します。
+
+       bbiiffffOOnnccee ((class BBiiffffOOnnccee))
+               biff  のアクションをメールが来るごとに常に行なうか
+               どうか指定します。
+
+       uuppddaattee ((class  XXttCCIInntteerrvvaall))
+               到着を調査する間隔を秒で指定します。
+
+
+
+X Version 11               10 Aug 1997                          8
+
+
+
+
+
+XMASCOT(1)                                             XMASCOT(1)
+
+
+       bbiiffffCCmmdd ((class BBiiffffCCmmdd))
+               メール到着を調べるコマンドを指定します。
+
+       bbiiffffAAccttiioonn ((class BBiiffffAAccttiioonn))
+               メール着信時のデフォルトのアクションです。
+
+       bbiiffffPPaatttteerrnn ((class PPaatttteerrnn))
+               メール着信マークの画像ファイルを指定します。
+
+       bbccooll00 ((class CCooll00))
+               メール着信マークの透明色 (色番号) を指定します。
+
+       bbrrggbb00 ((class RRggbb00))
+               メール着信マークの透明色 (RGB 指定) を指定します。
+
+       bbiiffffFFiilltteerr ((class BBiiffffFFiilltteerr))
+               着信メール一覧表時用のフィルタを指定します。
+
+       bbiiffffPPooppddoowwnn ((class  XXttCCIInntteerrvvaall))
+               一覧表時が自動的に消えるまでの時間を指定します。負
+               ならずっと表示します。0 なら表示しません。
+
+       yyoouubbiinn ((class  YYoouubbiinn))
+               youbin を使用するかどうかを指定します。
+
+       sseerrvveerr ((class  SSeerrvveerr))
+               youbin サーバの名称を指定します。
+
+       音声関連のリソース
+
+
+       ssoouunnddCCoommmmaanndd ((class SSoouunnddCCoommmmaanndd))
+               音声再生用のコマンドを指定します。
+
+
+       メニュー関連のリソース
+
+       メニューの各項目のリソースは、 mmeennuu??..mmaassDDaatt??  のあとにつけ
+       て指定します。? のところにメニューの番号とマスコットの番号
+       が入ります。
+
+
+       mmeennuussNNuumm ((class MMeennuussNNuumm))
+               メニューセットの個数を指定します。
+
+       nnuummssOOffMMeennuu ((class NNuummssOOffMMeennuu))
+               メニューエントリの数を指定します。
+
+       mmaassDDaatt??..ttiittllee ((class TTiittllee))
+               マスコットの名称を指定します。
+
+       mmaassDDaatt??..ffiilleennaammee ((class PPaatttteerrnnee))
+               マスコットの画像ファイルを指定します。
+
+
+
+
+X Version 11               10 Aug 1997                          9
+
+
+
+
+
+XMASCOT(1)                                             XMASCOT(1)
+
+
+       mmaassDDaatt??..ccooll00 ((class CCooll00))
+               マスコットの透明色 (色番号) を指定します。
+
+       mmaassDDaatt??..rrggbb00 ((class RRggbb00))
+               マスコットの透明色 (RGB 指定) を指定します。
+
+       mmaassDDaatt??..mmaaggnniiffyy ((class MMaaggnniiffyy))
+               マスコットの拡大率を指定します。
+
+       mmaassDDaatt??..ssttaarrttSSnndd ((class SSttaarrttSSnndd))
+               マスコットの起動時音声を指定します。
+
+       mmaassDDaatt??..cclliicckkSSnndd ((class CClliicckkSSnndd))
+               マスコットのクリック時音声を指定します。
+
+       mmaassDDaatt??..eennddSSnndd ((class EEnnddSSnndd))
+               マスコットの終了時音声を指定します。
+
+       mmaassDDaatt??..mmaaiillSSnndd ((class MMaaiillSSnndd))
+               マスコットのメール着信時音声を指定します。
+
+       mmaassDDaatt??..bbiiffffPPooss ((class BBiiffffPPooss))
+               マスコットのメール着信表示マークの位置を指定 し ま
+               す。
+
+
+FFIILLEESS
+       $HOME/.xmascotrc    アラーム時刻などが保存されます。
+
+
+BBUUGGSS
+       各設定パラメータに無茶な値を設定した場合、誤動作の可能性が
+       あります。
+
+
+AAUUTTHHOORRSS
+       渡辺剛 (豊橋技科大 Computer Club) メインプログラマ
+
+       飯田剛 (豊橋技科大 Computer Club) 画像ローダ部分作成
+
+       牧野悌士 (豊橋技科大 Computer Club) マスコットデザイン
+
+       HomePage http://cclub.tutcc.tut.ac.jp/xmascot/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+X Version 11               10 Aug 1997                         10
+
+

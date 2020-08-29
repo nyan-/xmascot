@@ -1,0 +1,148 @@
+#ifndef XCOMM
+#define XCOMM #
+#endif
+
+XCOMM CC = gcc
+XCOMM CDEBUGFLAGS= -g -Wall
+XCOMM CCOPTIONS=
+
+XCOMM Imakefile for XMascot
+
+XCOMM XMascot library dir
+XMASDIR = $(LIBDIR)/xmascot
+
+XCOMM if you want to install XMascot to your directory only, define below
+XCOMM installing to $HOME/bin/xmascot, $HOME/xmascot/ and $HOME/XMascot
+
+#undef PERSONAL
+
+XCOMM if you fail to link difftime (may be on SunOS 4.1.X), define below 
+
+#undef NEED_DIFFTIME 
+
+XCOMM If you want to use XMascot as Biff
+XCOMM define USE_BIFF amd set MAILBOX_DIRECTORY
+XCOMM if you want to show arrived mail lists, define USE_BIFFLIST
+
+#define USE_BIFF
+#define USE_BIFFLIST
+MAILBOX_DIR  = /var/mail
+
+XCOMM If you want to use Youbin service, define USE_YOUBIN and USE_BIFF
+XCOMM If you don't define USE_BIFF, Youbin service is not available.
+
+#undef USE_YOUBIN
+
+XCOMM If your machine have a feature to play sound file,
+XCOMM define USE_SOUND and set command to SOUND_COMMAND
+XCOMM %s will replaced to name of sound file.
+
+#undef USE_SOUND
+SOUND_COMMAND = cat %s > /dev/audio
+
+XCOMM if you want to use I18N version of XMascot, define this. 
+XCOMM This also install japanese(EUC) resource file to $LANG dir
+
+#define USE_I18N
+
+XCOMM to fake Xlib when your system's setlocale not support your locale and
+XCOMM your Xlib was not compiled with -DX_LOCALE 
+
+#undef DUMMY_SETLOCALE
+
+XCOMM simulate on double float ( or integer )
+
+#define USE_DOUBLE
+
+XCOMM use pattern on chain also ?
+
+#define USE_CHAINPAT
+
+XCOMM show shadow
+
+#define USE_SHADOW
+
+XCOMM Which Athene Widget ?
+
+#undef USE_XAW3D
+
+XCOMM ---------- DON'T TOUCH BELOW ---------
+
+#ifdef NEED_DIFFTIME
+DIFFTIME = -DNEED_DIFFTIME -DSunOS
+#endif
+
+#ifdef USE_BIFF
+#ifdef USE_BIFFLIST
+DEFINES_BIFF = -DBIFF -DBIFF_LIST -DMAILBOXDIR=\"$(MAILBOX_DIR)\"
+#else
+DEFINES_BIFF = -DBIFF -DMAILBOXDIR=\"$(MAILBOX_DIR)\"
+#endif
+#ifdef USE_YOUBIN
+DEFINES_YOUBIN = -DYOUBIN
+#endif
+BIFFFILE = biff.o
+#else
+BIFFFILE =
+#endif
+
+#ifdef USE_SOUND
+DEFINES_SOUND = -DSOUND
+SOUNDFILE = sound.o
+#else
+DEFINES_SOUND =
+SOUND_COMMAND =
+SOUNDFILE =
+#endif
+
+#ifdef USE_I18N
+DEFINES_I18N = -DI18N
+LOCALEDIR = $(LIBDIR)/$(LANG)/app-defaults
+#else
+DEFINES_I18N =
+#endif
+
+#ifdef DUMMY_SETLOCALE
+DEFINES_DMSET = -DDUMMY_SETLOCALE
+#else
+DEFINES_DMSET = 
+#endif
+
+#ifdef USE_DOUBLE
+DEFINES_DBL = -DUSE_DOUBLE
+ISINFILE =
+#else
+DEFINES_DBL =
+ISINFILE = isin.o
+#endif
+
+#ifdef PERSONAL
+BINDIR       = $(HOME)/bin
+XMASDIR      = $(HOME)/xmascot
+LOCALEDIR    = $(HOME)/$(LANG)
+#endif
+
+#ifdef USE_CHAINPAT
+DEF_CHAIN = -DUSE_CHAINPAT
+#else
+DEF_CHAIN =
+#endif
+
+#define USE_SHAPE
+#ifdef USE_SHAPE
+DEF_SHAPE = -DSHAPE
+#else
+DEF_SHAPE =
+#endif
+
+#ifdef USE_SHADOW
+DEF_SHADOW = -DSHADOW
+#else
+DEF_SHADOW =
+#endif
+
+#ifdef USE_XAW3D
+DEF_XAW3D = -DXAW3D
+#else
+DEF_XAW3D =
+#endif

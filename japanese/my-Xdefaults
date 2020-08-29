@@ -1,0 +1,229 @@
+!
+! ときめいてますか？
+! 俺はこれがつくりたかったんだ〜〜
+! こういうデータが作りたい人は、自分でなんとか
+! 画像と音声をつくりましょう。(*^_^*)
+! つくりかたは http://cclub.tutcc.tut.ac.jp/~go/tokimeki.html
+! をみればわかるかもしんない
+! 吸いだす場合は個人の楽しみの範囲で使用しましょう
+!
+*menusNum: 4
+*search: /usr/home/go/mascot
+
+*menu1.title: ときめきマスコット
+*menu1.numsOfMenu: 13
+*menu1.MasDat.magnify: 2.0
+
+*menu1.masDat0.title: 藤崎  詩織
+*menu1.masDat0.filename: shiori.mag
+*menu1.masDat0.startSnd: shiori.str
+*menu1.masDat0.clickSnd: shiori.clk
+*menu1.masDat0.endSnd: shiori.end
+
+*menu1.masDat1.title: 虹野  沙希 
+*menu1.masDat1.filename: nijino.mag
+*menu1.masDat1.startSnd: nijino.str
+*menu1.masDat1.clickSnd: nijino.clk
+*menu1.masDat1.endSnd: nijino.end
+
+*menu1.masDat2.title: 朝日奈  夕子
+*menu1.masDat2.filename: asahina.mag
+*menu1.masDat2.startSnd: asahina.str
+*menu1.masDat2.clickSnd: asahina.clk
+*menu1.masDat2.endSnd: asahina.end
+
+*menu1.masDat3.title: 清川  望
+*menu1.masDat3.filename: kiyokawa.mag
+*menu1.masDat3.startSnd: kiyokawa.str
+*menu1.masDat3.clickSnd: kiyokawa.clk
+*menu1.masDat3.endSnd: kiyokawa.end
+
+*menu1.masDat4.title: 館林  見晴
+*menu1.masDat4.filename: tate.mag
+*menu1.masDat4.startSnd: tate.str
+*menu1.masDat4.clickSnd: tate.clk
+*menu1.masDat4.endSnd: tate.end
+
+*menu1.masDat5.title: 紐緒  結奈 
+*menu1.masDat5.filename: himoo.mag
+*menu1.masDat5.startSnd: himoo.str
+*menu1.masDat5.clickSnd: himoo.clk
+*menu1.masDat5.endSnd: himoo.end
+
+*menu1.masDat6.title: 片桐  彩子
+*menu1.masDat6.filename: katagiri.mag
+*menu1.masDat6.startSnd: katagiri.str
+*menu1.masDat6.clickSnd: katagiri.clk
+*menu1.masDat6.endSnd: katagiri.end
+
+*menu1.masDat7.title: 古式  ゆかり
+*menu1.masDat7.filename: koshiki.mag
+*menu1.masDat7.startSnd: koshiki.str
+*menu1.masDat7.clickSnd: koshiki.clk
+*menu1.masDat7.endSnd: koshiki.end
+
+*menu1.masDat8.title: 如月  未緒
+*menu1.masDat8.filename: kisaragi.mag
+*menu1.masDat8.startSnd: kisaragi.str
+*menu1.masDat8.clickSnd: kisaragi.clk
+*menu1.masDat8.endSnd: kisaragi.end
+
+*menu1.masDat9.title: 鏡  魅羅
+*menu1.masDat9.filename: kagami.mag
+*menu1.masDat9.startSnd: kagami.str
+*menu1.masDat9.clickSnd: kagami.clk
+*menu1.masDat9.endSnd: kagami.end
+
+*menu1.masDat10.title: 美樹原  愛
+*menu1.masDat10.filename: mikihara.mag
+*menu1.masDat10.startSnd: mikihara.str
+*menu1.masDat10.clickSnd: mikihara.clk
+*menu1.masDat10.endSnd: mikihara.end
+
+*menu1.masDat11.title: 早乙女  優美
+*menu1.masDat11.filename: yumi.mag
+*menu1.masDat11.startSnd: yumi.str
+*menu1.masDat11.clickSnd: yumi.str
+*menu1.masDat11.endSnd:   yumi.end
+
+*menu1.masDat12.title: 伊集院  レイ
+*menu1.masDat12.filename: rei.mag
+*menu1.masDat12.startSnd: rei.str
+*menu1.masDat12.clickSnd: rei.clk
+*menu1.masDat12.endSnd: rei.end
+
+*menu2.title: ときめきみこさん
+*menu2.numsOfMenu: 13
+*menu2.MasDat.magnify: 2.0
+
+*menu2.masDat0.title: 藤崎  詩織
+*menu2.masDat0.filename: miko/shiori.mag
+*menu2.masDat0.startSnd: shiori.str
+*menu2.masDat0.clickSnd: shiori.clk
+*menu2.masDat0.endSnd: shiori.end
+
+*menu2.masDat1.title: 虹野  沙希 
+*menu2.masDat1.filename: miko/nijino.mag
+*menu2.masDat1.startSnd: nijino.str
+*menu2.masDat1.clickSnd: nijino.clk
+*menu2.masDat1.endSnd: nijino.end
+
+*menu2.masDat2.title: 朝日奈  夕子
+*menu2.masDat2.filename: miko/asahina.mag
+*menu2.masDat2.startSnd: asahina.str
+*menu2.masDat2.clickSnd: asahina.clk
+*menu2.masDat2.endSnd: asahina.end
+
+*menu2.masDat3.title: 清川  望
+*menu2.masDat3.filename: miko/kiyokawa.mag
+*menu2.masDat3.startSnd: kiyokawa.str
+*menu2.masDat3.clickSnd: kiyokawa.clk
+*menu2.masDat3.endSnd: kiyokawa.end
+
+*menu2.masDat4.title: 館林  見晴
+*menu2.masDat4.filename: miko/tate.mag
+*menu2.masDat4.startSnd: tate.str
+*menu2.masDat4.clickSnd: tate.clk
+*menu2.masDat4.endSnd: tate.end
+
+*menu2.masDat5.title: 紐緒  結奈 
+*menu2.masDat5.filename: miko/himoo.mag
+*menu2.masDat5.startSnd: himoo.str
+*menu2.masDat5.clickSnd: himoo.clk
+*menu2.masDat5.endSnd: himoo.end
+
+*menu2.masDat6.title: 片桐  彩子
+*menu2.masDat6.filename: miko/katagiri.mag
+*menu2.masDat6.startSnd: katagiri.str
+*menu2.masDat6.clickSnd: katagiri.clk
+*menu2.masDat6.endSnd: katagiri.end
+
+*menu2.masDat7.title: 古式  ゆかり
+*menu2.masDat7.filename: miko/koshiki.mag
+*menu2.masDat7.startSnd: koshiki.str
+*menu2.masDat7.clickSnd: koshiki.clk
+*menu2.masDat7.endSnd: koshiki.end
+
+*menu2.masDat8.title: 如月  未緒
+*menu2.masDat8.filename: miko/kisaragi.mag
+*menu2.masDat8.startSnd: kisaragi.str
+*menu2.masDat8.clickSnd: kisaragi.clk
+*menu2.masDat8.endSnd: kisaragi.end
+
+*menu2.masDat9.title: 鏡  魅羅
+*menu2.masDat9.filename: miko/kagami.mag
+*menu2.masDat9.startSnd: kagami.str
+*menu2.masDat9.clickSnd: kagami.clk
+*menu2.masDat9.endSnd: kagami.end
+
+*menu2.masDat10.title: 美樹原  愛
+*menu2.masDat10.filename: miko/mikihara.mag
+*menu2.masDat10.startSnd: mikihara.str
+*menu2.masDat10.clickSnd: mikihara.clk
+*menu2.masDat10.endSnd: mikihara.end
+
+*menu2.masDat11.title: 早乙女  優美
+*menu2.masDat11.filename: miko/yumi.mag
+*menu2.masDat11.startSnd: yumi.str
+*menu2.masDat11.clickSnd: yumi.str
+*menu2.masDat11.endSnd:   yumi.end
+
+*menu2.masDat12.title: 伊集院  レイ
+*menu2.masDat12.filename: miko/rei.mag
+*menu2.masDat12.startSnd: rei.str
+*menu2.masDat12.clickSnd: rei.clk
+*menu2.masDat12.endSnd: rei.end
+
+! こっちも趣味の世界ですな。
+! http://cclub.tutcc.tut.ac.jp:1080/~go/dokyu2.html
+
+*menu3.title: 同級生２マスコット
+*menu3*numsOfMenu: 15
+
+*menu3*masDat0.title: 鳴沢　唯
+*menu3*masDat0.filename: dokyusei2/yui.mag
+
+*menu3*masDat1.title: 篠原　いずみ
+*menu3*masDat1.filename: dokyusei2/izumi.mag
+
+*menu3*masDat2.title: 杉本 桜子 
+*menu3*masDat2.filename: dokyusei2/sakurako.mag
+
+*menu3*masDat3.title: 永島 久美子 
+*menu3*masDat3.filename: dokyusei2/kumiko.mag
+
+*menu3*masDat4.title: 田中 美沙
+*menu3*masDat4.filename: dokyusei2/misa.mag
+
+*menu3*masDat5.title: 水野　友美 
+*menu3*masDat5.filename: dokyusei2/tomomi.mag
+
+*menu3*masDat6.title: 舞島　可憐
+*menu3*masDat6.filename: dokyusei2/karen.mag
+
+*menu3*masDat7.title: 南川　洋子
+*menu3*masDat7.filename: dokyusei2/yoko.mag
+
+*menu3*masDat8.title: 都筑　こずえ
+*menu3*masDat8.filename: dokyusei2/kozue.mag
+
+*menu3*masDat9.title: 加藤　みのり
+*menu3*masDat9.filename: dokyusei2/minori.mag
+
+*menu3*masDat10.title: 安田　愛美
+*menu3*masDat10.filename: dokyusei2/azumi.mag
+
+*menu3*masDat11.title: 野々村　美里
+*menu3*masDat11.filename: dokyusei2/misato.mag
+
+*menu3*masDat12.title: 鳴沢　美佐子
+*menu3*masDat12.filename: dokyusei2/misako.mag
+
+*menu3*masDat13.title: 片桐　美鈴
+*menu3*masDat13.filename: dokyusei2/mirei.mag
+
+*menu3*masDat14.title: 永島　佐知子 
+*menu3*masDat14.filename: dokyusei2/sachiko.mag
+
+!*menu3*masDat15.title: 野郎ども 
+!*menu3*masDat15.filename: dokyusei2/yaro.mag

@@ -1,0 +1,24 @@
+#include "../config.tmpl"
+
+DEFINES += $(DEF_SHAPE) $(DEF_SHADOW)
+
+OBJS  =	image.o etc.o mag.o gif.o bmp.o pnm.o
+OBJS2 = animate.o anim_pat.o anim_image.o \
+	anim_l.o anim_y.o anim_gif.o namelist.o
+
+SRCS = $(OBJS:.o=.c) $(OBJS2:.o=.c)
+
+NormalLibraryTarget(image,$(OBJS))
+
+#if 0
+NormalLibraryTarget(animate,$(OBJS2))
+
+anim_l.c: anim_l.l
+	$(LEX) -Panim $<
+	$(MV)	lex.anim.c $@
+
+clean::
+	$(RM) anim_l.c
+
+YaccFile(anim_y,-d -p anim)
+#endif

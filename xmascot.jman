@@ -1,0 +1,579 @@
+.TH XMASCOT 1 "10 Aug 1997" "X Version 11"
+.SH NAME
+XMascot \- X Window System 上で動くかわいいマスコット
+.SH SYNOPSIS
+.B xmascot
+[filename] [-\fItoolkitoption\fP ...] [-\fIoption\fP ...]
+.SH DESCRIPTION
+.I XMascot 
+は、
+.B X Window System
+の画面上に可愛いマスコットを表示するプログラムです。
+以下のような機能を持ちます。
+
+.TP 10
+揺れる
+画面のなかでプリチーに揺れます。
+.TP 10
+伸びる
+鎖の長さをお好みに応じて伸び縮み可能です。
+.TP 10
+喋る
+別途音声再生のコマンド、音声データを準備することで、喋らせることが可能です。
+.TP 10
+アラーム
+毎日ある時刻に定義したアクションをおこさせることができます。
+.TP 10
+BIFF
+メールの到着をしらせる BIFF として利用できます。
+From: Subject: も表示されるようになりました。
+
+.SH OPERATION
+基本的な操作は次の通りです。
+.TP 20
+ピン
+左ボタンでドラッグ 移動
+
+右ボタンでクリック メニューの表示
+.TP 20 
+マスコット
+左ボタンでクリック 加速
+
+左ボタンでドラッグ 鎖を伸び縮みさせる
+
+右ボタンでクリック クリック時音声再生
+.TP 20
+メール着信マーク
+左ボタンでクリック メール一覧表示
+
+.SH ALARM SETUP
+
+.I XMascot
+は、さまざまなアラーム機能を持っています。
+これらのアラームの設定は、Set Alarm/Chime メニューから行ないます。
+
+設定画面
+
+.DS
+ ---a--- --b-- ----------c----------- --d---
+ (*^o^*) 00:00 sound(pipipipi.au)     [TEST]
+.DE
+
+.TP 4
+a.
+このスイッチを ON (黒く反転)にすると、設定が有効になります。
+.TP 4
+b.
+時刻の設定(24時間表示)です。
+タイマーの場合はアクションをおこすまでの時間を 分:秒 で設定します。
+カップラーメンをつくるなら 03:00 です。
+.TP 4
+c.
+実行させるアクションを設定します。アクションについては、
+ACTIONS の項目を参照してください
+.TP 4
+d.
+アラームのテストを行ないます
+
+アラームで設定したデータは、$HOME/.xmascotrc に保存されます。
+
+.PP
+各アラームの解説
+
+.TP 20
+.B Daily Alarm
+毎日定時に実行されるアラームです。3つ設定できます
+.TP 20
+.B Timer Alarm
+一定時間経過後に一度だけ実行されるアラームです。
+これだけ時間指定が 分:秒 です。
+.TP 20
+.B Interval Timer
+一定時間間隔で実行されるアラームです
+.TP 20
+.B Hour Chime
+毎時 0分に実行されるチャイムです
+.TP 20
+.B Half-Hour Chime
+毎時 30分に実行されるチャイムです。
+.TP 20
+.B Biff Action
+これはアラームではありません。Biff 用のアクションを定義します。
+
+.SH BIFF FEATURE
+
+.I XMascot
+は、biff としての機能を持っています。
+着信マークの表示、From: Subject: の一覧表示、アクション駆動
+を行ないます。
+youbin コマンドの呼び出しもサポートしています。(コンパイル時指定)
+
+通常は、各ユーザのメールのスプールを参照して動作しますが、
+オプション \fB-biffcmd\fP で
+メールの到着をチェックする外部コマンドを指定することも可能です。
+この場合、外部コマンドの返り値で次のように判断します。
+
+.TP 10
+1 or 負数
+メールボックスは空
+.TP 10
+0
+新規メールあり
+.TP 10
+2
+状態は変わらず
+
+.PP
+また、外部コマンド呼びだしの場合は、メールの一覧表示は
+その外部コマンドの標準出力が使用されます。
+
+.PP
+オプション \fB-bifffilter\fP で、BIFF 用外部フィルタを指定した場合、
+一覧表示される内容はこのフィルタで処理されます。
+国際化対応にしてある場合、このフィルタを適宜設定することで、
+JIS や MIME のヘッダをきちんと表示させることが可能です。
+フィルタには、nkf などが利用できます。
+
+例1: JIS の Subject: を表示させる
+
+locale が EUC の場合
+.DS
+ % xmascot -bifffilter "nkf -e"
+.DE
+
+locale が SJIS の場合
+.DS
+ % xmascot -bifffilter "nkf -s"
+.DE
+
+例2: From: の MIME もデコードさせたい場合
+
+locale が EUC の場合
+.DS
+ % xmascot -bifffilter "nkf -e -m"
+.DE
+
+locale が SJIS の場合
+.DS
+ % xmascot -bifffilter "nkf -s -m"
+.DE
+
+.SH OPTIONS
+.I XMascot
+は
+.B X Toolkit
+の標準的なオプションに加えて
+以下に示すようなオプションが使用できます。
+.PP
+なお、透明色は自動で判定されますので、通常は未指定で問題ありません。
+どうしても判定に成功しないときのみ指定してください。
+.TP 20
+.BI \-verbose
+実行中の作業内容を標準エラー出力に出力させます。
+.TP 20
+.BI \-gravity " n"
+重力加速度を指定します。単位は、kg cm/s^2です。
+.TP 20
+.BI \-chainlength " n"
+鎖の長さを指定します。単位は mm です。
+.TP 20
+.BI \-damping " f"
+減衰係数を指定します。0から1までの実数で指定します。
+0だと、減衰せずにずっと揺れ続けます。1だと、1度も揺れずに止まります。
+.TP 20
+.BI \-degree " n"
+振り始めの角度を指定します。0〜180度の範囲で指定します。
+.TP 20
+.BI \-menuno " n"
+複数のマスコットメニューがある場合、開始時のメニューの番号を指定します。
+一番上にあるのが0番で、以下1,2,3と番号が振られています。
+.TP 20
+.BI \-no " n"
+開始時に表示するマスコットの番号を指定します。
+メニューの一番上にあるのが0番で、以下1,2,3と番号が
+振られています。
+.TP 20
+.BI \-magnify " f"
+マスコットの拡大率を実数で指定します。
+.TP 20
+.BI \-pinpat " filename"
+ピンの表示パターンのファイルを指定します。
+.TP 20
+.BI \-random
+起動時のマスコットをランダムに決定します
+.TP 20
+.BI \-changetime " min"
+マスコットを定期的にメニューの次のものに変更させます。
+アラームのインターバルとは別系統になります。時間は分で指定します。
+-randomと併用すると、変更がランダムになります。
+.TP 20
+.BI \-allmenu
+マスコット変更の機能が全メニューに及びます
+.TP 20
+.BI \-chainnum " n"
+鎖の個数を指定します。
+.TP 20
+.BI \-drawtiming " n"
+描画をコマ落ちさせます。n 回に一回の描画になります。
+.TP 20
+.BI \-searchpath " search-path"
+マスコットや音声のデータの検索パスを指定します。パスは : で区切ります。
+.TP 20
+.BI \-chainpat " filename"
+鎖の表示パターンを指定します。
+.TP 20
+.BI \-soundcmd " cmdline"
+音声再生用のコマンドを指定します。コマンドラインのファイル名が
+入る位置に、%s を入れて下さい。
+
+例 "cat %s > /dev/audio"
+.TP 20
+.BI \-soundstart " file"
+起動時の音声を指定します。
+.TP 20
+.BI \-soundclick " file"
+クリック時の音声を指定します。
+.TP 20
+.BI \-soundend " file"
+終了時の音声を指定します。
+.TP 20
+.BI \-soundmail " file"
+メール着信時の音声を指定します。
+.TP 20
+.BI \-nobiff
+BIFF 機能を無効にします。
+.BI \-update " sec"
+到着調査の時間間隔を秒単位で指定します。(デフォルト30秒)
+.TP 20
+.BI \-noonce
+メールが到着するたびにアクションを起こさせます。
+(デフォルトでは、メールを参照して、biffの起動が解除されて
+からでないと、2通目以降はアクションは呼ばれません。)
+.TP 20
+.BI \-biffcmd " cmd"
+メール到着をチェックするコマンドを指定します。
+これを指定すると、メールスプールは参照しなくなります。
+.TP 20
+.BI \-biffpat " fname"
+メール到着を示すグラフィックのパターンを指定します。
+.TP 20
+.BI \-biffpos " str"
+メール到着パターンを表示する位置を指定します。(left,center,right)
+.TP 20
+.BI \-nobifflists
+着信メール一覧表示を出しません。
+.TP 20
+.BI \-biffgeometry " geom"
+着信メール一覧の表示サイズと表示位置を指定します。
+.TP 20
+.BI \-bifffilter " cmd"
+着信メール一覧表示の際に通すフィルタコマンドを指定します。
+.TP 20
+.BI \-popdowntime " sec"
+着信メール一覧表示を自動的に消すまでの秒数を指定します。
+0以下の数値にすると、自動に消えなくなります。
+.TP 20
+.BI \-noyoubin
+YOUBIN プロトコルを使用しません。
+.TP 20
+.BI \-server " host"
+YOUBIN サーバを指定します。
+.TP 20
+.BI \-shadow " n"
+影を表示する際の、影のずれの量を指定します。
+.TP 20
+.BI \-noshadow
+影をつけません (
+.BI \-shadow " 0"
+とおなじ )
+
+.SH ACTIONS
+
+.I XMascot
+では、アラームや Biff の機能の動作として、さまざまな
+アクションを指定することが可能です。
+これは、
+.B X Toolkit
+のアクションの機構を利用しているので、キーボードやマウスに対して
+同様にアクションを割り当てることができます。
+リソースの機構を用いて適宜 translation して下さい。
+
+.TP 15
+ピン部分
+XMascot.translations: #override
+.TP 15
+マスコット部分
+XMascot.mascot_base.translations: #override
+
+.PP
+例:
+.DS
+ XMascot.translations: #override \\
+   <Btn2Up>: chg_next() snd_click()\\n\\
+   Shift<Key>R: chg_random() snd_click()
+.DE
+
+この例では、ピンの部分でマウスの中ボタンを押すと、
+マスコットがメニューの次のものに変わり、クリック時音声が再生されます。
+また、Shift-R で、マスコットがランダムに変わって、クリック時音声
+が再生されます。
+
+アクションの定義の詳細は、Xに関する書籍などを参照して下さい。
+
+.PP
+アラームなどでの利用は、アラームのダイアログの中にアクションを記述します。
+この設定内容は、$HOME/.xmascotrc に保存されます。
+
+アクション一覧表
+
+.TP 8
+.B quit
+プログラムを終了します。
+.TP 8
+.B change(\fInum\fP)
+メニューエントリの \fInum\fP 番のマスコットに変更します。
+.TP 8
+.B chg_file(\fIfname[,title]\fP)
+\fIfname\fP のファイルをマスコットとして読み込みます。
+これはメニューの一番下に登録されます。
+.TP 8
+.B chg_next
+マスコットをメニューの次のエントリのものに変更します。
+.TP 8
+.B chg_next_all
+全メニューをふくめて次のエントリのものに変更します。
+.TP 8
+.B chg_random
+マスコットをランダムに変更します。
+.TP 8
+.B chg_random_all
+全メニューを含めてマスコットをランダムに変更します。
+.TP 8
+.B start_move
+マスコットをすこし加速させます。止まっていたら揺れ始めます。
+.TP 8
+.B sound(\fIfname1,...\fP)
+音声ファイルを連続再生します。
+.TP 8
+.B snd_start
+開始時音声を再生します。
+.TP 8
+.B snd_click
+クリック時音声を再生します。
+.TP 8
+.B snd_end
+終了時音声を再生します。
+.TP 8
+.B snd_mail
+メール着信時音声を再生します。
+.TP 8
+.B system(\fIcmdline\fP)
+外部コマンドを実行します。
+.TP 8
+.B chg_param(\fIparam1,dat1,..\fP)
+パラメータを変更させます。
+変更できるパラメータはつぎのとおりです。
+.RS 8
+.TP 5
+grav
+重力定数
+.TP 5
+dump
+減衰係数
+.TP 5
+mag
+拡大率
+.TP 5
+clen
+鎖の長さ
+.RE
+.TP 8
+.B bell(\fIparam\fP)
+ベルを鳴らします。このベルは XBell を用いており、
+USE_SOUND とは無関係です。\fIparam\fP は -100から100
+の間で指定します。
+.TP 8
+.B showbiff
+メール一覧を表示させます。
+
+.SH RESOURCES
+.I XMascot
+では
+.B X Toolkit
+の標準的なリソースに加えて、
+次のようなリソースが利用できます。
+
+.TP 8
+.B verbose (\fPclass \fBVerbose)
+チェック用の冗長表示モードにします。
+.TP 8
+.B gravity (\fPclass \fBGravity)
+重力加速度を指定します。
+.TP 8
+.B chainLen (\fPclass \fBChainLen)
+鎖の長さを指定します。
+.TP 8
+.B dampCoeff (\fPclass \fBDampCoeff)
+減衰係数を指定します。
+.TP 8
+.B degree (\fPclass \fBDegree)
+振り始めの角度を指定します。
+.TP 8
+.B magnifyBase (\fPclass \fBMagnifyBase)
+マスコット全体に対する拡大率を指定します。
+.TP 8
+.B action (\fPclass \fBAction)
+デフォルトのアクションを指定します。
+.TP 8
+.B search (\fPclass \fBSearch)
+デフォルトのサーチパスを指定します。
+.TP 8
+.B pinPattern (\fPclass \fBPattern)
+ピンの画像ファイルを指定します。
+.TP 8
+.B pcol0 (\fPclass \fBCol0)
+ピンの透明色(色番号)を指定します。
+.TP 8
+.B prgb0 (\fPclass \fBRgb0)
+ピンの透明色(RGB指定)を指定します。
+.TP 8
+.B chainNum (\fPclass \fBChainNum)
+鎖の個数を指定します。
+.TP 8
+.B chainPattern (\fPclass \fBPattern)
+鎖の画像ファイルを指定します。
+.TP 8
+.B ccol0 (\fPclass \fBCol0)
+鎖の透明色(色番号)を指定します。
+.TP 8
+.B crgb0 (\fPclass \fBRgb0)
+鎖の透明色(RGB指定)を指定します。
+.TP 8
+.B random (\fPclass \fBRandom)
+マスコットをランダムに決定します。
+.TP 8
+.B changeTime (\fPclass \fBInterval)
+マスコットを自動変更するまでの時間を指定します。
+.TP 8
+.B allMenu (\fPclass \fBAllMenu)
+マスコットの自動変更が全メニューに及ぶようになります。
+.TP 8
+.B mascotNo (\fPclass \fBMascotNo)
+起動時のマスコットの番号を指定します。
+.TP 8
+.B menuNo (\fPclass \fBMenuNo)
+起動時のメニューの番号を指定します。
+.TP 8
+.B shadow (\fPclass \fBShadow)
+影のずれの量を指定します。
+0 以下の場合は影をなくします。
+
+.PP
+Biff 関連のリソース
+
+.TP 8
+.B biff (\fPclass \fBBiff)
+biff 機能が有効かどうか指定します。
+.TP 8
+.B biffOnce (\fPclass \fBBiffOnce)
+biff のアクションをメールが来るごとに常に行なうかどうか指定します。
+.TP 8
+.B update (\fPclass \fB XtCInterval)
+到着を調査する間隔を秒で指定します。
+.TP 8
+.B biffCmd (\fPclass \fBBiffCmd)
+メール到着を調べるコマンドを指定します。
+.TP 8
+.B biffAction (\fPclass \fBBiffAction)
+メール着信時のデフォルトのアクションです。
+.TP 8
+.B biffPattern (\fPclass \fBPattern)
+メール着信マークの画像ファイルを指定します。
+.TP 8
+.B bcol0 (\fPclass \fBCol0)
+メール着信マークの透明色(色番号)を指定します。
+.TP 8
+.B brgb0 (\fPclass \fBRgb0)
+メール着信マークの透明色(RGB指定)を指定します。
+.TP 8
+.B biffFilter (\fPclass \fBBiffFilter)
+着信メール一覧表時用のフィルタを指定します。
+.TP 8
+.B biffPopdown (\fPclass \fB XtCInterval)
+一覧表時が自動的に消えるまでの時間を指定します。
+負ならずっと表示します。0なら表示しません。
+.TP 8
+.B youbin (\fPclass \fB Youbin)
+youbin を使用するかどうかを指定します。
+.TP 8
+.B server (\fPclass \fB Server)
+youbin サーバの名称を指定します。
+.PP
+音声関連のリソース
+
+.TP 8
+.B soundCommand (\fPclass \fBSoundCommand)
+音声再生用のコマンドを指定します。
+
+.PP
+メニュー関連のリソース
+
+メニューの各項目のリソースは、
+.B menu?.masDat? 
+のあとにつけて指定します。?のところにメニューの番号とマスコットの番号が入ります。
+
+.TP 8
+.B menusNum (\fPclass \fBMenusNum)
+メニューセットの個数を指定します。
+.TP 8
+.B numsOfMenu (\fPclass \fBNumsOfMenu)
+メニューエントリの数を指定します。
+.TP 8
+.B masDat?.title (\fPclass \fBTitle)
+マスコットの名称を指定します。
+.TP 8
+.B masDat?.filename (\fPclass \fBPatterne)
+マスコットの画像ファイルを指定します。
+.TP 8
+.B masDat?.col0 (\fPclass \fBCol0)
+マスコットの透明色(色番号)を指定します。
+.TP 8
+.B masDat?.rgb0 (\fPclass \fBRgb0)
+マスコットの透明色(RGB指定)を指定します。
+.TP 8
+.B masDat?.magnify (\fPclass \fBMagnify)
+マスコットの拡大率を指定します。
+.TP 8
+.B masDat?.startSnd (\fPclass \fBStartSnd)
+マスコットの起動時音声を指定します。
+.TP 8
+.B masDat?.clickSnd (\fPclass \fBClickSnd)
+マスコットのクリック時音声を指定します。
+.TP 8
+.B masDat?.endSnd (\fPclass \fBEndSnd)
+マスコットの終了時音声を指定します。
+.TP 8
+.B masDat?.mailSnd (\fPclass \fBMailSnd)
+マスコットのメール着信時音声を指定します。
+.TP 8
+.B masDat?.biffPos (\fPclass \fBBiffPos)
+マスコットのメール着信表示マークの位置を指定します。
+
+.SH FILES
+.TP 20
+$HOME/.xmascotrc
+アラーム時刻などが保存されます。
+
+.SH BUGS
+各設定パラメータに無茶な値を設定した場合、誤動作の可能性が
+あります。
+
+.SH AUTHORS
+.sp
+渡辺 剛(豊橋技科大 Computer Club) メインプログラマ
+
+飯田 剛(豊橋技科大 Computer Club) 画像ローダ部分作成
+
+牧野 悌士(豊橋技科大 Computer Club) マスコットデザイン
+
+HomePage http://cclub.tutcc.tut.ac.jp/xmascot/

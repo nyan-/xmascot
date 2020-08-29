@@ -1,0 +1,594 @@
+
+
+
+XMASCOT(1)					       XMASCOT(1)
+
+
+NNAAMMEE
+       XMascot - A Pretty Mascot on X Window System
+
+SSYYNNOOPPSSIISS
+       xxmmaassccoott [filename] [-_t_o_o_l_k_i_t_o_p_t_i_o_n ...] [-_o_p_t_i_o_n ...]
+
+DDEESSCCRRIIPPTTIIOONN
+       _X_M_a_s_c_o_t	is  a  program	to show a pretty Mascot on your XX
+       WWiinnddooww SSyysstteemm..  XMascot have these features:
+
+
+       Swing	 Swing on display prettily.
+
+       Stretch	 Chain's length become longer and shorter as  you
+		 like.
+
+       Speak	 Speeking  some	 sounds(needs  sound's	file  and
+		 playing command)
+
+       Alarm	 It can caused a action on specific time.
+
+       BIFF	 It can work as BIFF (mail checker)
+
+
+OOPPEERRAATTIIOONN
+       Basic Operations are...
+
+       on PIN window:	   Left button Drag: Move position.
+
+			   Right button Click: Popup menu.
+
+       on Mascot window:   Left Button Click:  accelerate  mascot
+			   moving.
+
+			   Left	  button   Drag:  Change  chain's
+			   length.
+
+			   Right button Click: Clicking Sound.
+
+       on Mail arrived maek window:
+			   Left Button	Click:	Popup  Mail  list
+			   window.
+
+
+AALLAARRMM SSEETTUUPP
+       _X_M_a_s_c_o_t	has various Alarm facility.  These alarms can set
+       from Alarm/Chime menu.
+
+       Setup Display:
+
+	---a--- --b-- ----------c----------- --d---
+	(*^o^*) 00:00 sound(pipipipi.au)     [TEST]
+
+
+
+
+
+X Version 11		   10 Aug 1997				1
+
+
+
+
+
+XMASCOT(1)					       XMASCOT(1)
+
+
+       a.  Trigger this switch ON(Black) to valid setup.
+
+       b.  Time setup(24hour  display  hour:min	 ).   Only  timer
+	   alarm, min:sec format.
+
+       c.  Setting actions.  refer ACTIONS to know detail.
+
+       d.  Alarm test switch.
+
+	   The datas setted by this menu are save to $HOME/.xmas
+	   cotrc.
+
+
+       About alarms:
+
+
+       DDaaiillyy AAllaarrmm	   Act on constant time on Everyday. Ther
+			   are 3.
+
+       TTiimmeerr AAllaarrmm	   Act some times after. Formats: min:sec
+
+       IInntteerrvvaall TTiimmeerr	   Act periodic timer.
+
+       HHoouurr CChhiimmee	   Chime on every hour's 0 min.
+
+       HHaallff--HHoouurr CChhiimmee	   Chime on everu hour's 30 min.
+
+       BBiiffff AAccttiioonn	   Not Alarm. for BIFF action setting.
+
+
+BBIIFFFF FFEEAATTUURREE
+       _X_M_a_s_c_o_t has a feature of BIFF (mail checker)  youbin  com
+       mand is supported,
+
+       Normaly,	 XMascot  check your mail spool.  It can setup to
+       call extern command to chack mail by option --bbiiffffccmmdd .
+
+       Return Values of extern command:
+
+
+       1 or negative value:
+		 Mail box is empty.
+
+       Zero	 New mail comes.
+
+       2	 no change state.
+
+
+       when calling extern command, Mail  List	shows  that  com
+       mand's standard output.
+
+
+OOPPTTIIOONNSS
+       _X_M_a_s_c_o_t has XX TToooollkkiitt standard options and belows:
+
+
+
+X Version 11		   10 Aug 1997				2
+
+
+
+
+
+XMASCOT(1)					       XMASCOT(1)
+
+
+       Transparent color is normally setted automatically.
+
+
+       --vveerrbboossee		   Verbose mode.
+
+       --ggrraavviittyy _n	   Set Gravity. Unit: kg cm/s^2
+
+       --cchhaaiinnlleennggtthh _n	   Set Chain length. Unit: mm
+
+       --ddaammppiinngg _f	   Set	damping	 coefficient. from 0 to 1
+			   real value.	0: never damp.	1:  never
+			   swing.
+
+       --ddeeggrreeee _n	   Set	starting  degree  (from	 0 to 180
+			   degree)
+
+       --mmeennuunnoo _n	   Set starting menu No.
+
+       --nnoo _n		   Set starting Mascot No.
+
+       --mmaaggnniiffyy _f	   Set Mascot's Magnify.
+
+       --ppiinnppaatt _f_i_l_e_n_a_m_e	   Set Pin's graphics pattern.
+
+       --rraannddoomm		   Select Mascoot random when startup.
+
+       --cchhaannggeettiimmee _m_i_n	   Change   mascot    periodic.(UNIT:min)
+			   Change random when using with -random.
+
+       --aallllmmeennuu		   ChangeMascot changing effects  to  all
+			   menu.
+
+       --cchhaaiinnnnuumm _n	   Set chain's number.
+
+       --ddrraawwttiimmiinngg _n	   Draw pattern once per n times.
+
+       --sseeaarrcchhppaatthh _s_e_a_r_c_h_-_p_a_t_h
+			   Set Mascot/Sounds data search path.
+
+       --cchhaaiinnppaatt _f_i_l_e_n_a_m_e  Set chain's graphics pattern.
+
+       --ssoouunnddccmmdd _c_m_d_l_i_n_e   Set	sounds	playing	 command. "%s" is
+			   replaced  to	 sound's  filename.   For
+			   Exam. "cat %s > /dev/audio"
+
+       --ssoouunnddssttaarrtt _f_i_l_e	   Set stating sound file.
+
+       --ssoouunnddcclliicckk _f_i_l_e	   Set clicking sound file.
+
+       --ssoouunnddeenndd _f_i_l_e	   Set	ending	sound  file.   Set ending
+			   sound file.
+
+       --ssoouunnddmmaaiill _f_i_l_e	   Set mail arrived sound file.
+
+
+
+
+X Version 11		   10 Aug 1997				3
+
+
+
+
+
+XMASCOT(1)					       XMASCOT(1)
+
+
+       --nnoobbiiffff		   Don't use BIFF feature.   --uuppddaattee  _s_e_c
+			   Specifies   the   frequency	to  check
+			   mail's arriving.  Unit: sec.	 (default
+			   30sec)
+
+       --nnoooonnccee		   Do action on every mail arriving.  (on
+			   default, Only a action when first mail
+			   comes.)
+
+       --bbiiffffccmmdd _c_m_d	   Set mail checing command.
+
+       --bbiiffffppaatt _f_n_a_m_e	   Set mail coming mark graphics pattern.
+
+       --bbiiffffppooss _s_t_r	   Set which position mail mark	 display.
+			   on Mascot's (left,center,right)
+
+       --nnoobbiifffflliissttss	   Don't show arrived mail list.
+
+       --bbiiffffggeeoommeettrryy _g_e_o_m  Set Mail List's geometry.
+
+       --bbiiffffffiilltteerr _c_m_d	   Set Filter command that invoked before
+			   disp Mail's List.
+
+       --ppooppddoowwnnttiimmee _s_e_c	   Set	popuping  time	of  Mail's  list.
+			   Negative  value:  never  popdown auto
+			   matic.
+
+       --nnooyyoouubbiinn	   Don't use YOUBIN command.
+
+       --sseerrvveerr _h_o_s_t	   Set YOUBIN servername.
+
+       --sshhaaddooww _n	   Set shadow width.
+
+       --nnoosshhaaddooww	   Don't disp shadow.
+
+
+AACCTTIIOONNSS
+       _X_M_a_s_c_o_t has meny actions that  are  caused  by  alarm  and
+       BIFF.
+
+       This  is from .B X Toolkit 's actions feature.  So actions
+       can bind to keyboard and mouse.
+
+
+       translation name:
+
+
+       on PIn's window
+		      XMascot.translations: #override
+
+       on Mascot's window
+		      XMascot.mascot_base.translations: #override
+
+
+
+
+
+X Version 11		   10 Aug 1997				4
+
+
+
+
+
+XMASCOT(1)					       XMASCOT(1)
+
+
+       Ex.:
+	XMascot.translations: #override \
+	  <Btn2Up>: chg_next() snd_click()\n\
+	  Shift<Key>R: chg_random() snd_click()
+
+       On this example,As click on PIN winndow, Mascot changes to
+       next mascot on menu and play  starting-sound.   and  input
+       Shift-R	caused	Changing  mascot random and play clicking
+       sound.
+
+       Please refer Xtoolkit's manual about actions.
+
+
+       To use actions by Alarm, input actions in  Alarm	 dialogs.
+       This setup are saved to $HOME/.xmascotrc .
+
+
+       Action's List.
+
+
+       qquuiitt    Terminate program.
+
+       cchhaannggee((_n_u_m))
+	       Change mascot to No _n_u_m .
+
+       cchhgg__ffiillee((_f_n_a_m_e_[_,_t_i_t_l_e_]))
+	       read file _f_n_a_m_e as Mascot.
+
+       cchhgg__nneexxtt
+	       Change mascot to next entry of menu.
+
+       cchhgg__nneexxtt__aallll
+	       Change mascot to netxt entry with all menus.
+
+       cchhgg__rraannddoomm
+	       Change mascot random.
+
+       cchhgg__rraannddoomm__aallll
+	       Change mascot random with all menus.
+
+       ssttaarrtt__mmoovvee
+	       Push  mascot  little. Start swinging if mascot was
+	       stopping.
+
+       ssoouunndd((_f_n_a_m_e_1_,_._._.))
+	       Play sound file continue.
+
+       ssnndd__ssttaarrtt
+	       Play starting sound.
+
+       ssnndd__cclliicckk
+	       Play clicking sound.
+
+       ssnndd__eenndd Play ending sound.
+
+
+
+X Version 11		   10 Aug 1997				5
+
+
+
+
+
+XMASCOT(1)					       XMASCOT(1)
+
+
+       ssnndd__mmaaiill
+	       Play mail arriving sound.
+
+       ssyysstteemm((_c_m_d_l_i_n_e))
+	       Execute extern command.
+
+       cchhgg__ppaarraamm((_p_a_r_a_m_1_,_d_a_t_1_,_._.))
+	       Change parameter.
+
+	       grav Gravity
+
+	       dump Damping coefficient.
+
+	       mag  Magnify
+
+	       clen Chain length
+
+       bbeellll((_p_a_r_a_m))
+	       Beep Bell. This is XBell and no related	USE_SOUND
+	       option  on compiling. _p_a_r_a_m 's range: from -100 to
+	       100 refer manual of xset.
+
+       sshhoowwbbiiffff
+	       Show arrived mail's list.
+
+
+RREESSOOUURRCCEESS
+       _X_M_a_s_c_o_t can use XX TToooollkkiitt standatrd resource and belows:
+
+
+       vveerrbboossee ((class VVeerrbboossee))
+	       Verbose mode.
+
+       ggrraavviittyy ((class GGrraavviittyy))
+	       Set Gravity.
+
+       cchhaaiinnLLeenn ((class CChhaaiinnLLeenn))
+	       Set Chain Length.
+
+       ddaammppCCooeeffff ((class DDaammppCCooeeffff))
+	       Set damping coefficient.
+
+       ddeeggrreeee ((class DDeeggrreeee))
+	       Set starting degree.
+
+       mmaaggnniiffyyBBaassee ((class MMaaggnniiffyyBBaassee))
+	       Set magnify for All mascots.
+
+       aaccttiioonn ((class AAccttiioonn))
+	       Set default actions.
+
+       sseeaarrcchh ((class SSeeaarrcchh))
+	       Set default search-path.
+
+
+
+
+X Version 11		   10 Aug 1997				6
+
+
+
+
+
+XMASCOT(1)					       XMASCOT(1)
+
+
+       ppiinnPPaatttteerrnn ((class PPaatttteerrnn))
+	       Set Pin's graphics pattern.
+
+       ppccooll00 ((class CCooll00))
+	       Set Pin's transparent color.(INDEX)
+
+       pprrggbb00 ((class RRggbb00))
+	       Set Pin's transparent color.(RGB)
+
+       cchhaaiinnNNuumm ((class CChhaaiinnNNuumm))
+	       Set chain's number.
+
+       cchhaaiinnPPaatttteerrnn ((class PPaatttteerrnn))
+	       Set chain's graphics pattern.
+
+       ccccooll00 ((class CCooll00))
+	       Set chain's transparent color.(INDEX)
+
+       ccrrggbb00 ((class RRggbb00))
+	       Set chain's transparent color.(RGB)
+
+       rraannddoomm ((class RRaannddoomm))
+	       Change mascot random.
+
+       cchhaannggeeTTiimmee ((class IInntteerrvvaall))
+	       Set a interval to change mascot.
+
+       aallllMMeennuu ((class AAllllMMeennuu))
+	       Mascot changing effects to all menu.
+
+       mmaassccoottNNoo ((class MMaassccoottNNoo))
+	       Set startup mascot No.
+
+       mmeennuuNNoo ((class MMeennuuNNoo))
+	       Set startup menu No.
+
+       sshhaaddooww ((class SShhaaddooww))
+	       Set shadow's width.  0 means no shadow.
+
+
+       Biff RESOURCES
+
+
+       bbiiffff ((class BBiiffff))
+	       biff feature ON/OFF
+
+       bbiiffffOOnnccee ((class BBiiffffOOnnccee))
+	       biff actions only Mail first comes.
+
+       uuppddaattee ((class  XXttCCIInntteerrvvaall))
+	       Specifies the frequency to check mail's	arriving.
+
+       bbiiffffCCmmdd ((class BBiiffffCCmmdd))
+	       Set a command to check mail comes.
+
+
+
+X Version 11		   10 Aug 1997				7
+
+
+
+
+
+XMASCOT(1)					       XMASCOT(1)
+
+
+       bbiiffffAAccttiioonn ((class BBiiffffAAccttiioonn))
+	       Set default biff actions.
+
+       bbiiffffPPaatttteerrnn ((class PPaatttteerrnn))
+	       Set graphics pattern of Mail coming mark.
+
+       bbccooll00 ((class CCooll00))
+	       Set transparent color of biff mark.(INDEX)
+
+       bbrrggbb00 ((class RRggbb00))
+	       Set transparent color of biff mark.(RGB)
+
+       bbiiffffFFiilltteerr ((class BBiiffffFFiilltteerr))
+	       Set fillter command for Coming mail's list.
+
+       bbiiffffPPooppddoowwnn ((class  XXttCCIInntteerrvvaall))
+	       Set  auto-popdown  time of Mail's list.	(Negative
+	       Value:Don't popdown automatic. 0:Never Popup)
+
+       yyoouubbiinn ((class  YYoouubbiinn))
+	       Set if use YOUBIN command or not.
+
+       sseerrvveerr ((class  SSeerrvveerr))
+	       Set YOUBIN servername
+
+
+       SOUNDs RESOURCES
+
+
+       ssoouunnddCCoommmmaanndd ((class SSoouunnddCCoommmmaanndd))
+	       Set SOUND's play command.
+
+
+       Menu's RESOURCES
+
+       Menu's resource start after mmeennuu??..mmaassDDaatt??......  Fill ?, Menu
+       NUMBER and Mascot NUMBER.
+
+
+       like this: menu0.masDat0.title: My Mascot
+
+
+       mmeennuussNNuumm ((class MMeennuussNNuumm))
+	       Set menu set's number.
+
+       nnuummssOOffMMeennuu ((class NNuummssOOffMMeennuu))
+	       Set Mascot No on a menu.
+
+       mmaassDDaatt??..ttiittllee ((class TTiittllee))
+	       Set Mascot's name.
+
+       mmaassDDaatt??..ffiilleennaammee ((class PPaatttteerrnnee))
+	       Set Mascot pattern's filename.
+
+
+
+
+X Version 11		   10 Aug 1997				8
+
+
+
+
+
+XMASCOT(1)					       XMASCOT(1)
+
+
+       mmaassDDaatt??..ccooll00 ((class CCooll00))
+	       Set Mascot's transparent color.(INDEX)
+
+       mmaassDDaatt??..rrggbb00 ((class RRggbb00))
+	       Set Mascot's transparent color.(RGB)
+
+       mmaassDDaatt??..mmaaggnniiffyy ((class MMaaggnniiffyy))
+	       Set Mascot's magnify.
+
+       mmaassDDaatt??..ssttaarrttSSnndd ((class SSttaarrttSSnndd))
+	       Set Mascot's starting sound.
+
+       mmaassDDaatt??..cclliicckkSSnndd ((class CClliicckkSSnndd))
+	       Set Mascot's clicking sound.
+
+       mmaassDDaatt??..eennddSSnndd ((class EEnnddSSnndd))
+	       Set Mascot's ending sound.
+
+       mmaassDDaatt??..mmaaiillSSnndd ((class MMaaiillSSnndd))
+	       Set Mascot's mail arriving sound.
+
+       mmaassDDaatt??..bbiiffffPPooss ((class BBiiffffPPooss))
+	       Set Mail mark's position.
+
+
+FFIILLEESS
+       $HOME/.xmascotrc	   Save alarm time etc.
+
+
+BBUUGGSS
+       Parameter's range isn't checked.
+
+
+AAUUTTHHOORRSS
+       Go  Watanabe(Toyohashi  Univ. of Tech. Computer Club) Main
+       Programmer
+
+       Tsuyoshi Iida(TUT Computer  Club)  Graphics  Loader  Unit,
+       etc.
+
+       Yasuhito Makino(TUT Computer Club) Mascot design.
+
+       HomePage http://cclub.tutcc.tut.ac.jp/xmascot/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+X Version 11		   10 Aug 1997				9
+
+

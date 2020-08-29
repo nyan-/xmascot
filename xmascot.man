@@ -1,0 +1,536 @@
+.TH XMASCOT 1 "10 Aug 1997" "X Version 11"
+.SH NAME
+XMascot \- A Pretty Mascot on X Window System
+.SH SYNOPSIS
+.B xmascot
+[filename] [-\fItoolkitoption\fP ...] [-\fIoption\fP ...]
+.SH DESCRIPTION
+.I XMascot 
+is a program to show a pretty Mascot on your 
+.B X Window System.
+XMascot have these features:
+
+.TP 10
+Swing
+Swing on display prettily.
+.TP 10
+Stretch
+Chain's length become longer and shorter as you like.
+.TP 10
+Speak
+Speeking some sounds(needs sound's file and playing command)
+.TP 10
+Alarm
+It can caused a action on specific time.
+.TP 10
+BIFF
+It can work as BIFF (mail checker)
+
+.SH OPERATION
+Basic Operations are...
+.TP 20
+on PIN window:
+Left button Drag: Move position.
+
+Right button Click: Popup menu.
+.TP 20 
+on Mascot window:
+Left Button Click: accelerate mascot moving.
+
+Left button Drag: Change chain's length.
+
+Right button Click: Clicking Sound.
+.TP 20
+on Mail arrived maek window:
+Left Button Click: Popup Mail list window.
+
+.SH ALARM SETUP
+
+.I XMascot
+has various Alarm facility.
+These alarms can set from Alarm/Chime menu.
+
+Setup Display:
+
+.DS
+ ---a--- --b-- ----------c----------- --d---
+ (*^o^*) 00:00 sound(pipipipi.au)     [TEST]
+.DE
+
+.TP 4
+a.
+Trigger this switch ON(Black) to valid setup.
+.TP 4
+b.
+Time setup(24hour display hour:min ).
+Only timer alarm, min:sec format.
+.TP 4
+c.
+Setting actions.
+refer ACTIONS to know detail.
+.TP 4
+d.
+Alarm test switch.
+
+The datas setted by this menu are save to $HOME/.xmascotrc.
+
+.PP
+About alarms:
+
+.TP 20
+.B Daily Alarm
+Act on constant time on Everyday. Ther are 3.
+.TP 20
+.B Timer Alarm
+Act some times after. Formats: min:sec
+.TP 20
+.B Interval Timer
+Act periodic timer.
+.TP 20
+.B Hour Chime
+Chime on every hour's 0 min.
+.TP 20
+.B Half-Hour Chime
+Chime on everu hour's 30 min.
+.TP 20
+.B Biff Action
+Not Alarm. for BIFF action setting.
+
+.SH BIFF FEATURE
+
+.I XMascot
+has a feature of BIFF (mail checker)
+youbin command is supported,
+
+Normaly, XMascot check your mail spool.
+It can setup to call extern command to chack mail by 
+option \fB-biffcmd\fP .
+
+Return Values of extern command:
+
+.TP 10
+1 or negative value:
+Mail box is empty.
+.TP 10
+Zero
+New mail comes.
+.TP 10
+2
+no change state.
+
+.PP
+when calling extern command, Mail List shows that command's standard
+output.
+
+.SH OPTIONS
+.I XMascot
+has
+.B X Toolkit
+standard options and belows:
+
+.PP
+Transparent color is normally setted automatically.
+
+.TP 20
+.BI \-verbose
+Verbose mode.
+.TP 20
+.BI \-gravity " n"
+Set Gravity. Unit: kg cm/s^2
+.TP 20
+.BI \-chainlength " n"
+Set Chain length. Unit: mm
+.TP 20
+.BI \-damping " f"
+Set damping coefficient. from 0 to 1 real value.
+0: never damp. 1: never swing.
+.TP 20
+.BI \-degree " n"
+Set starting degree (from 0 to 180 degree)
+.TP 20
+.BI \-menuno " n"
+Set starting menu No.
+.TP 20
+.BI \-no " n"
+Set starting Mascot No.
+.TP 20
+.BI \-magnify " f"
+Set Mascot's Magnify.
+.TP 20
+.BI \-pinpat " filename"
+Set Pin's graphics pattern.
+.TP 20
+.BI \-random
+Select Mascoot random when startup.
+.TP 20
+.BI \-changetime " min"
+Change mascot periodic.(UNIT:min)
+Change random when using with -random.
+.TP 20
+.BI \-allmenu
+ChangeMascot changing effects to all menu.
+.TP 20
+.BI \-chainnum " n"
+Set chain's number.
+.TP 20
+.BI \-drawtiming " n"
+Draw pattern once per n times.
+.TP 20
+.BI \-searchpath " search-path"
+Set Mascot/Sounds data search path.
+.TP 20
+.BI \-chainpat " filename"
+Set chain's graphics pattern.
+.TP 20
+.BI \-soundcmd " cmdline"
+Set sounds playing command. "%s" is replaced to sound's filename.
+For Exam. "cat %s > /dev/audio"
+.TP 20
+.BI \-soundstart " file"
+Set stating sound file.
+.TP 20
+.BI \-soundclick " file"
+Set clicking sound file.
+.TP 20
+.BI \-soundend " file"
+Set ending sound file.
+Set ending sound file.
+.TP 20
+.BI \-soundmail " file"
+Set mail arrived sound file.
+.TP 20
+.BI \-nobiff
+Don't use BIFF feature.
+.BI \-update " sec"
+Specifies the frequency to check mail's arriving.
+Unit: sec. (default 30sec)
+.TP 20
+.BI \-noonce
+Do action on every mail arriving.
+(on default, Only a action when first mail comes.)
+.TP 20
+.BI \-biffcmd " cmd"
+Set mail checing command.
+.TP 20
+.BI \-biffpat " fname"
+Set mail coming mark graphics pattern.
+.TP 20
+.BI \-biffpos " str"
+Set which position mail mark display. on Mascot's (left,center,right)
+.TP 20
+.BI \-nobifflists
+Don't show arrived mail list.
+.TP 20
+.BI \-biffgeometry " geom"
+Set Mail List's geometry.
+.TP 20
+.BI \-bifffilter " cmd"
+Set Filter command that invoked before disp Mail's List.
+.TP 20
+.BI \-popdowntime " sec"
+Set popuping time of Mail's list.
+Negative value: never popdown automatic.
+.TP 20
+.BI \-noyoubin
+Don't use YOUBIN command.
+.TP 20
+.BI \-server " host"
+Set YOUBIN servername.
+.TP 20
+.BI \-shadow " n"
+Set shadow width.
+.TP 20
+.BI \-noshadow
+Don't disp shadow.
+
+.SH ACTIONS
+
+.I XMascot
+has meny actions that are caused by alarm and BIFF.
+
+This is from .B X Toolkit 's actions feature.
+So actions can bind to keyboard and mouse.
+
+.PP
+translation name:
+
+.TP 15
+on PIn's window
+XMascot.translations: #override
+.TP 15
+on Mascot's window
+XMascot.mascot_base.translations: #override
+
+.PP
+Ex.:
+.DS
+ XMascot.translations: #override \\
+   <Btn2Up>: chg_next() snd_click()\\n\\
+   Shift<Key>R: chg_random() snd_click()
+.DE
+
+On this example,As click on PIN winndow,
+Mascot changes to next mascot on menu and play starting-sound.
+and input Shift-R caused Changing mascot random and play clicking sound.
+
+Please refer Xtoolkit's manual about actions.
+
+.PP
+To use actions by Alarm, input actions in Alarm dialogs.
+This setup are saved to $HOME/.xmascotrc .
+
+.PP
+Action's List.
+
+.TP 8
+.B quit
+Terminate program.
+.TP 8
+.B change(\fInum\fP)
+Change mascot to No \fInum\fP .
+.TP 8
+.B chg_file(\fIfname[,title]\fP)
+read file \fIfname\fP as Mascot.
+.TP 8
+.B chg_next
+Change mascot to next entry of menu.
+.TP 8
+.B chg_next_all
+Change mascot to netxt entry with all menus.
+.TP 8
+.B chg_random
+Change mascot random.
+.TP 8
+.B chg_random_all
+Change mascot random with all menus.
+.TP 8
+.B start_move
+Push mascot little. Start swinging if mascot was stopping.
+.TP 8
+.B sound(\fIfname1,...\fP)
+Play sound file continue.
+.TP 8
+.B snd_start
+Play starting sound.
+.TP 8
+.B snd_click
+Play clicking sound.
+.TP 8
+.B snd_end
+Play ending sound.
+.TP 8
+.B snd_mail
+Play mail arriving sound.
+.TP 8
+.B system(\fIcmdline\fP)
+Execute extern command.
+.TP 8
+.B chg_param(\fIparam1,dat1,..\fP)
+Change parameter.
+.RS 8
+.TP 5
+grav
+Gravity
+.TP 5
+dump
+Damping coefficient.
+.TP 5
+mag
+Magnify
+.TP 5
+clen
+Chain length
+.RE
+.TP 8
+.B bell(\fIparam\fP)
+Beep Bell. This is XBell and no related USE_SOUND option 
+on compiling. \fIparam\fP 's range: from -100 to 100
+refer manual of xset.
+.TP 8
+.B showbiff
+Show arrived mail's list.
+
+.SH RESOURCES
+.I XMascot
+can use
+.B X Toolkit
+standatrd resource and belows:
+
+.TP 8
+.B verbose (\fPclass \fBVerbose)
+Verbose mode.
+.TP 8
+.B gravity (\fPclass \fBGravity)
+Set Gravity.
+.TP 8
+.B chainLen (\fPclass \fBChainLen)
+Set Chain Length.
+.TP 8
+.B dampCoeff (\fPclass \fBDampCoeff)
+Set damping coefficient.
+.TP 8
+.B degree (\fPclass \fBDegree)
+Set starting degree.
+.TP 8
+.B magnifyBase (\fPclass \fBMagnifyBase)
+Set magnify for All mascots.
+.TP 8
+.B action (\fPclass \fBAction)
+Set default actions.
+.TP 8
+.B search (\fPclass \fBSearch)
+Set default search-path.
+.TP 8
+.B pinPattern (\fPclass \fBPattern)
+Set Pin's graphics pattern.
+.TP 8
+.B pcol0 (\fPclass \fBCol0)
+Set Pin's transparent color.(INDEX)
+.TP 8
+.B prgb0 (\fPclass \fBRgb0)
+Set Pin's transparent color.(RGB)
+.TP 8
+.B chainNum (\fPclass \fBChainNum)
+Set chain's number.
+.TP 8
+.B chainPattern (\fPclass \fBPattern)
+Set chain's graphics pattern.
+.TP 8
+.B ccol0 (\fPclass \fBCol0)
+Set chain's transparent color.(INDEX)
+.TP 8
+.B crgb0 (\fPclass \fBRgb0)
+Set chain's transparent color.(RGB)
+.TP 8
+.B random (\fPclass \fBRandom)
+Change mascot random.
+.TP 8
+.B changeTime (\fPclass \fBInterval)
+Set a interval to change mascot.
+.TP 8
+.B allMenu (\fPclass \fBAllMenu)
+Mascot changing effects to all menu.
+.TP 8
+.B mascotNo (\fPclass \fBMascotNo)
+Set startup mascot No.
+.TP 8
+.B menuNo (\fPclass \fBMenuNo)
+Set startup menu No.
+.TP 8
+.B shadow (\fPclass \fBShadow)
+Set shadow's width.
+0 means no shadow.
+
+.PP
+Biff RESOURCES
+
+.TP 8
+.B biff (\fPclass \fBBiff)
+biff feature ON/OFF
+.TP 8
+.B biffOnce (\fPclass \fBBiffOnce)
+biff actions only Mail first comes.
+.TP 8
+.B update (\fPclass \fB XtCInterval)
+Specifies the frequency to check mail's arriving.
+.TP 8
+.B biffCmd (\fPclass \fBBiffCmd)
+Set a command to check mail comes.
+.TP 8
+.B biffAction (\fPclass \fBBiffAction)
+Set default biff actions.
+.TP 8
+.B biffPattern (\fPclass \fBPattern)
+Set graphics pattern of Mail coming mark.
+.TP 8
+.B bcol0 (\fPclass \fBCol0)
+Set transparent color of biff mark.(INDEX)
+.TP 8
+.B brgb0 (\fPclass \fBRgb0)
+Set transparent color of biff mark.(RGB)
+.TP 8
+.B biffFilter (\fPclass \fBBiffFilter)
+Set fillter command for Coming mail's list.
+.TP 8
+.B biffPopdown (\fPclass \fB XtCInterval)
+Set auto-popdown time of Mail's list.
+(Negative Value:Don't popdown automatic. 0:Never Popup)
+.TP 8
+.B youbin (\fPclass \fB Youbin)
+Set if use YOUBIN command or not.
+.TP 8
+.B server (\fPclass \fB Server)
+Set YOUBIN servername
+
+.PP
+SOUNDs RESOURCES
+
+.TP 8
+.B soundCommand (\fPclass \fBSoundCommand)
+Set SOUND's play command.
+
+.PP
+Menu's RESOURCES
+
+Menu's resource start after
+.B menu?.masDat?...
+Fill ?, Menu NUMBER and Mascot NUMBER.
+
+.PP
+like this:
+menu0.masDat0.title: My Mascot
+
+.TP 8
+.B menusNum (\fPclass \fBMenusNum)
+Set menu set's number.
+.TP 8
+.B numsOfMenu (\fPclass \fBNumsOfMenu)
+Set Mascot No on a menu.
+.TP 8
+.B masDat?.title (\fPclass \fBTitle)
+Set Mascot's name.
+.TP 8
+.B masDat?.filename (\fPclass \fBPatterne)
+Set Mascot pattern's filename.
+.TP 8
+.B masDat?.col0 (\fPclass \fBCol0)
+Set Mascot's transparent color.(INDEX)
+.TP 8
+.B masDat?.rgb0 (\fPclass \fBRgb0)
+Set Mascot's transparent color.(RGB)
+.TP 8
+.B masDat?.magnify (\fPclass \fBMagnify)
+Set Mascot's magnify.
+.TP 8
+.B masDat?.startSnd (\fPclass \fBStartSnd)
+Set Mascot's starting sound.
+.TP 8
+.B masDat?.clickSnd (\fPclass \fBClickSnd)
+Set Mascot's clicking sound.
+.TP 8
+.B masDat?.endSnd (\fPclass \fBEndSnd)
+Set Mascot's ending sound.
+.TP 8
+.B masDat?.mailSnd (\fPclass \fBMailSnd)
+Set Mascot's mail arriving sound.
+.TP 8
+.B masDat?.biffPos (\fPclass \fBBiffPos)
+Set Mail mark's position.
+
+.SH FILES
+.TP 20
+$HOME/.xmascotrc
+Save alarm time etc.
+
+.SH BUGS
+Parameter's range isn't checked.
+
+.SH AUTHORS
+.sp
+Go Watanabe(Toyohashi Univ. of Tech. Computer Club) Main Programmer
+
+Tsuyoshi Iida(TUT Computer Club) Graphics Loader Unit, etc.
+
+Yasuhito Makino(TUT Computer Club) Mascot design.
+
+HomePage http://cclub.tutcc.tut.ac.jp/xmascot/

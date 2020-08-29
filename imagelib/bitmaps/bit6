@@ -1,0 +1,4 @@
+#define bit6_width 4
+#define bit6_height 4
+static unsigned char bit6_bits[] = {
+   0x05, 0x0f, 0x05, 0x0f};

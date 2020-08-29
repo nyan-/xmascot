@@ -1,0 +1,25 @@
+/*==================================================================
+ XMascot Ver 2.6
+ TUT Computer Club "Project XMascot"
+ Copyright(c) 1997, 1996 Go Watanabe    go@cclub.tutcc.tut.ac.jp
+                         Tsuyoshi Iida  iida@cclub.tutcc.tut.ac.jp
+ All Rights Reserverd.
+====================================================================*/
+
+0. Introduction
+
+ XMascot is a program to show pretty Mascot on your X Window System.
+
+1. Installation 
+
+ a. edit config.tmpl
+ b. 
+    % xmkmf -a
+    % make
+    % make install
+   (% make install.man )
+
+Please refer on-line Manual about options etc.
+
+--
+go@cclub.tutcc.tut.ac.jp

@@ -1,0 +1,4 @@
+#define bit5_width 4
+#define bit5_height 4
+static unsigned char bit5_bits[] = {
+   0x05, 0x0b, 0x05, 0x0e};
