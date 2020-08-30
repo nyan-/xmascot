@@ -275,7 +275,7 @@ ChangeMascotFile(Widget w, XEvent * e, String * p, Cardinal * n)
 		MascotMenu *m = &adat.mascot_menus[0];
 		m->mascots[m->n_mascots].fname = p[0];
 		m->mascots[m->n_mascots].title = (*n > 2) ? p[1] : p[0];
-		change_mascot(w, (XtPointer)(m->n_mascots), NULL);
+		change_mascot(w, I2P(m->n_mascots), NULL);
 	}
 }
 

@@ -245,8 +245,8 @@ preference_dialog(Widget top)
 		p->bar = XtVaCreateManagedWidget(name, scrollbarWidgetClass, box_bar,
 					 XtNorientation, XtorientHorizontal,
 						 NULL);
-		XtAddCallback(p->bar, XtNjumpProc, bar_jump, (XtPointer) i);
-		XtAddCallback(p->bar, XtNscrollProc, bar_scroll, (XtPointer) i);
+		XtAddCallback(p->bar, XtNjumpProc, bar_jump, I2P(i));
+		XtAddCallback(p->bar, XtNscrollProc, bar_scroll, I2P(i));
 	}
 	box = XtVaCreateManagedWidget("box", boxWidgetClass, form,
 				      XtNfromVert, up,

@@ -126,7 +126,7 @@ image_free_pixels(ImageData *img)
 	if (img && img->allocated_pixel) {
 		int i;
 		if (verbose) {
-			fprintf(stderr,"free pixels: %d\n",img->npixel);
+			fprintf(stderr,"free pixels: %zu\n",img->npixel);
 			for(i=0;i<img->npixel;i++)
 				fprintf(stderr,"%d:%lx\n",i,img->allocated_pixel[i]);
 		}
@@ -974,7 +974,7 @@ image_alloc_palette(ImageData *img, size_t n)
     } else {
         perror(img->pal ? "realloc" : "malloc");
         fprintf(stderr,"image-lib:alloc_palette failed."
-				"%u,%u(%#x) bytes\n", n, size, size);
+				"%zu,%zu(%#zx) bytes\n", n, size, size);
 		exit(1);
     }
     return p;
@@ -1004,7 +1004,7 @@ image_alloc_data(ImageData *img, int w, int h, int t)
     if ((p = img->data ? realloc(img->data,size) : malloc(size)) == NULL) {
         perror(img->data ? "realloc" : "malloc");
 		fprintf(stderr,"image:alloc_data "
-				"%dx%d %u(%#x) bytes failed.\n", w,h,size,size);
+				"%dx%d %zu(%#zx) bytes failed.\n", w,h,size,size);
 		exit(1);
 	}
 

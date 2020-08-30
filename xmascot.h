@@ -9,10 +9,13 @@
 
 #include <X11/Xlib.h>
 #include <X11/Intrinsic.h>
+#include <X11/IntrinsicP.h>
 #include <X11/StringDefs.h>
 #include <X11/Xaw/Label.h>
 
 #include "image.h"
+
+#define	I2P(n)	((void *)(uintptr_t)(n))
 
 #define CHAIN_SIZE 8
 
@@ -161,6 +164,7 @@ void usage(int *argc, char **argv);
 /* pattern.c */
 void set_mas(XMascotData *adat);
 void set_widget_pattern(Widget w,char *name,int c,int r);
+void set_chain_pat(char *name, int c, int r);
 
 /* timer.c */
 void start_timer(void);
@@ -233,7 +237,10 @@ void get_rcfile(void);
 void put_rcfile(void);
 void action_parse(char *action);
 
-enum{ NODAT, STRING, ID, SYMBOL, RESERVE } TokenType;
+typedef enum {
+	NODAT, STRING, ID, SYMBOL, RESERVE
+} TokenType;
+
 void set_token(char *p);
 int get_token2(void);
 

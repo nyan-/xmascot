@@ -185,7 +185,7 @@ change_menu(Widget top, int num)
 	n   = adat.mascot_menus[num].n_mascots;
 
 	menu = XtVaCreatePopupShell("change", cascadeMenuWidgetClass, top, NULL);
-	XtAddCallback(menu, XtNpopupCallback, set_change_menu, (XtPointer) num);
+	XtAddCallback(menu, XtNpopupCallback, set_change_menu, I2P(num));
 	XtVaCreateManagedWidget("line", smeLineObjectClass, menu, NULL);
 	for (i = 0; i < n; i++) {
 		sprintf(name, "mascot%ld", i);

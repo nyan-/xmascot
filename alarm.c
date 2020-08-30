@@ -66,7 +66,7 @@ set_alarm(int num)
 	msg_out("difftime %ld\n", dt);
 
 	alarm_dat[num].id
-		= XtAppAddTimeOut(app, dt, AlarmHand, (XtPointer) num);
+		= XtAppAddTimeOut(app, dt, AlarmHand, I2P(num));
 }
 
 /* タイマ用のハンドラ */
@@ -88,7 +88,7 @@ set_timer(int num)
 	int             hour = alarm_dat[num].hour;
 	int             min = alarm_dat[num].min;
 	alarm_dat[num].id =
-		XtAppAddTimeOut(app, (hour * 60 + min) * 1000, AlarmHand2, (XtPointer) num);
+		XtAppAddTimeOut(app, (hour * 60 + min) * 1000, AlarmHand2, I2P(num));
 }
 
 /* チャイムのハンドラ */
@@ -130,7 +130,7 @@ set_chime(int num, int minute)
 	msg_out("difftime %ld\n", dt);
 
 	alarm_dat[num].id
-		= XtAppAddTimeOut(app, dt, AlarmHand3, (XtPointer) num);
+		= XtAppAddTimeOut(app, dt, AlarmHand3, I2P(num));
 }
 
 /* インターバルタイマ用のハンドラ */
@@ -143,7 +143,7 @@ AlarmHand4(XtPointer cl, XtIntervalId * id)
 	int             min = alarm_dat[num].min;
 	action_parse(alarm_dat[num].action);
 	alarm_dat[num].id =
-		XtAppAddTimeOut(app, (hour * 60 + min) * 60000, AlarmHand4, (XtPointer) num);
+		XtAppAddTimeOut(app, (hour * 60 + min) * 60000, AlarmHand4, I2P(num));
 }
 
 /* インターバルタイマーの設定 */
@@ -156,7 +156,7 @@ set_inter(int num)
 
 	if (hour > 0 || min > 0)
 		alarm_dat[num].id =
-			XtAppAddTimeOut(app, (hour * 60 + min) * 60000, AlarmHand4, (XtPointer) num);
+		    XtAppAddTimeOut(app, (hour * 60 + min) * 60000, AlarmHand4, I2P(num));
 }
 
 /* アラームの登録 */

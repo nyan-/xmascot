@@ -411,15 +411,17 @@ char *
 setlocale(int cat, const char *locale)
 {
 	static char name[100] = "C";	/* XXX */
-	if (locale)
+	if (locale) {
 		if (!*locale) {
 			char *s;
 			if ((s = getenv("LC_CTYPE")) || (s = getenv("LANG")))
 				strncpy(name, s, sizeof(name)-1);
 			else
 				strcpy(name, "C");
-		}else
+		} else {
 			strncpy(name, locale, sizeof(name)-1);
+		}
+	}
 	return name;
 }
 #endif
@@ -463,11 +465,12 @@ main(int argc, char *argv[])
 	set_biff();		/* biff 設定    */
 #endif
 
-	if (adat.change_time)
+	if (adat.change_time) {
 		if (adat.random)
 			XtAppAddTimeOut(app, adat.change_time * 60000, ChangeHand1, NULL);
 		else
 			XtAppAddTimeOut(app, adat.change_time * 60000, ChangeHand2, NULL);
+	}
 
 	/* イベントループ */
 	while (1) {
