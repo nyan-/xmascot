@@ -15,7 +15,7 @@ STD_INCLUDES = -I$(IMAGELIBDIR)
 SUBDIRS = $(IMAGELIBDIR)
 #define PassCDebugFlags
 
-MakeSubdirs($(SUBDIRS))
+NamedMakeSubdirs($(IMAGELIB),$(SUBDIRS))
 DependSubdirs($(SUBDIRS))
 
 DEPLIBS = XawClientDepLibs $(IMAGELIB)
